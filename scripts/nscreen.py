@@ -1,7 +1,15 @@
-import sys
-import os
-import subprocess
+from sys import argv
 from pathlib import Path
+from subprocess import run
+
+def save_file(filepath, content):
+    if Path(filepath).exists():
+        answer = input(f"{filepath} já existe. Sobrescrever? (s/N): ")
+        if answer.lower() != 's':
+            print("Operação cancelada.")
+            exit(0)
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(content)
 
 def create_screen(screen_name):
     screen_dir = f"src/screens/{screen_name}"
@@ -36,34 +44,32 @@ export default function useStyles(theme: ThemeProps) {
     index_path = f"{screen_dir}/index.tsx"
     styles_path = f"{screen_dir}/styles.tsx"
     
-    with open(index_path, 'w', encoding='utf-8') as f:
-        f.write(index_content)
+    save_file(index_path, index_content)
     
-    with open(styles_path, 'w', encoding='utf-8') as f:
-        f.write(styles_content)
+    save_file(styles_path, styles_content)
     
     print(f"Arquivos criados:")
     print(f"  - {index_path}")
     print(f"  - {styles_path}")
     
     try:
-        subprocess.run(['code', index_path], check=False)
+        run(['code', index_path], check=False)
         print(f"Abrindo {index_path} no VS Code...")
     except FileNotFoundError:
         print("VS Code não encontrado. Arquivos criados com sucesso!")
 
 def main():
-    if len(sys.argv) < 2:
+    if len(argv) < 2:
         print("Usage: nscreen [screen-name]")
         print("Exemplo: nscreen Home")
         print("  -> Cria em src/screens/Home")
-        sys.exit(1)
+        exit(1)
     
-    screen_name = sys.argv[1]
+    screen_name = argv[1]
     
     if not screen_name.strip():
         print("Erro: Nome da screen não pode estar vazio.")
-        sys.exit(1)
+        exit(1)
     
     create_screen(screen_name)
 

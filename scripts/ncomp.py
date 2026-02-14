@@ -1,7 +1,9 @@
-import os
-import subprocess
-from sys import argv
 from pathlib import Path
+from subprocess import run
+from sys import argv
+
+from nscreen import save_file
+
 
 def create_component(component_name, relative_path=""):
     """
@@ -55,11 +57,9 @@ export default function useStyles(theme: ThemeProps) {
     index_path = f"{component_dir}/index.tsx"
     styles_path = f"{component_dir}/styles.tsx"
     
-    with open(index_path, 'w', encoding='utf-8') as f:
-        f.write(index_content)
+    save_file(index_path, index_content)
     
-    with open(styles_path, 'w', encoding='utf-8') as f:
-        f.write(styles_content)
+    save_file(styles_path, styles_content)
     
     print(f"Arquivos criados:")
     print(f"  - {index_path}")
@@ -67,7 +67,7 @@ export default function useStyles(theme: ThemeProps) {
     
     # Tenta abrir no VS Code
     try:
-        subprocess.run(['code', index_path], check=False, shell=True)
+        run(['code', index_path], check=False, shell=True)
         print(f"Abrindo {index_path} no VS Code...")
     except FileNotFoundError:
         print("VS Code não encontrado. Arquivos criados com sucesso!")
