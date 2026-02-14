@@ -29,7 +29,7 @@ export default function TabItem({
 	return (
 		<Pressable
 			android_ripple={{
-				color: theme.colors.primary.transparent,
+				color: theme.colors.primaryContainer,
 				borderless: true,
 			}}
 			style={styles.item}
@@ -42,7 +42,7 @@ export default function TabItem({
 						? theme.colors.primary.main
 						: theme.colors.text.dark
 				}
-				size={24}
+				size={48}
 			/>
 			<View style={styles.labelContainer}>
 				<Text style={styles.label}>{label}</Text>

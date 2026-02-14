@@ -2,6 +2,7 @@ import { ComponentProps } from 'react';
 
 import FontAwesomeIcon from '@expo/vector-icons/FontAwesome6';
 import MaterialIcon from '@react-native-vector-icons/material-design-icons';
+import { Material3Scheme } from '@pchmn/expo-material3-theme';
 
 export type IColor = {
 	darker?: string;
@@ -10,7 +11,7 @@ export type IColor = {
 	light?: string;
 	lighter?: string;
 	transparent?: string;
-}
+};
 
 type ISize = {
 	xsm?: number;
@@ -20,10 +21,10 @@ type ISize = {
 	xl?: number;
 	xxl?: number;
 	xxxl?: number;
-}
+};
 
 export type ThemeProps = {
-	colors: {
+	/* colors: {
 		primary: IColor;
 		secondary?: IColor;
 		success: IColor;
@@ -33,7 +34,8 @@ export type ThemeProps = {
 		gray: {
 			[key: string]: string;
 		};
-	};
+	}; */
+	colors: Material3Scheme;
 	size: {
 		assets: ISize;
 		borderRadius: ISize;
@@ -41,10 +43,12 @@ export type ThemeProps = {
 		text: ISize;
 		images: ISize;
 	};
-}
+};
 
 export type MaterialIconName = ComponentProps<typeof MaterialIcon>['name'];
 
-export type FontAwesomeIconName = ComponentProps<typeof FontAwesomeIcon>['name'];
+export type FontAwesomeIconName = ComponentProps<
+	typeof FontAwesomeIcon
+>['name'];
 
 export type IconName = MaterialIconName | FontAwesomeIconName;

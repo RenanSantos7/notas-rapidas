@@ -5,6 +5,7 @@ import { useColorScheme } from 'react-native';
 import { ThemeProps } from '@/types/theme';
 import { sizes } from '@/styles/sizes';
 import { lightTheme } from '@/styles/lightTheme';
+import { Material3Theme, useMaterial3Theme } from '@pchmn/expo-material3-theme';
 
 interface IThemeContext {
 	isDarkTheme: boolean;
@@ -14,17 +15,20 @@ interface IThemeContext {
 const ThemeContext = createContext<IThemeContext>(undefined);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-	const isDarkTheme = useColorScheme() == 'dark';
+	const colorScheme = useColorScheme();
+	const materialTheme = useMaterial3Theme({
+		fallbackSourceColor: '#157ee0',
+	});
 
 	const theme = {
-		colors: lightTheme,
+		colors: materialTheme.theme[colorScheme],
 		size: sizes,
 	};
 
 	return (
 		<ThemeContext.Provider
 			value={{
-				isDarkTheme,
+				isDarkTheme: colorScheme == 'dark',
 				theme,
 			}}
 		>
