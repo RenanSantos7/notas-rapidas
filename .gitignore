@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# Android Studio
+.idea/
+
 # Expo
 .expo/
 dist/
@@ -10,6 +13,7 @@ web-build/
 expo-env.d.ts
 
 # Native
+ios
 .kotlin/
 *.orig.*
 *.jks
@@ -17,6 +21,10 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+android/**/build
+android/gradle
+android/gradlew
+.gradle
 
 # Metro
 .metro-health-check*
@@ -36,12 +44,11 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# generated native folders
-/ios
-/android
-
 # Python
 __pycache__
+
+# Yarn
+yarn-error.log*
 
 # Other
 *.old.*
