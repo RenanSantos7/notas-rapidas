@@ -1,0 +1,77 @@
+[
+	{
+		"id": "01936b7e-8c5a-7120-9d44-3f2a1b9c8e7f",
+		"title": "Lista de Tarefas Diárias",
+		"content": "# Tarefas para Hoje\n\n- [x] Revisar projeto React Native\n- [ ] Finalizar documentação da API\n- [ ] Reunião com equipe às 15h\n- [ ] Estudar TypeScript avançado\n\n## Prioridades\n\n1. **Alta**: Entrega do MVP\n2. **Média**: Testes unitários\n3. **Baixa**: Refatoração de código\n\n> Lembrar de fazer backup do projeto!",
+		"tags": ["produtividade", "trabalho", "tarefas"],
+		"ctime": "2026-02-13T08:30:45.123Z",
+		"mtime": "2026-02-13T10:15:22.456Z"
+	},
+	{
+		"id": "01936b7f-1a2b-712c-8e44-5f3a1c9d8e7f",
+		"title": "Receita de Bolo de Chocolate",
+		"content": "## Ingredientes\n\n### Massa:\n- 2 xícaras de farinha de trigo\n- 1 1/2 xícara de açúcar\n- 3/4 xícara de cacau em pó\n- 2 ovos\n- 1 xícara de leite\n- 1/2 xícara de óleo\n\n### Cobertura:\n- 200g de chocolate meio amargo\n- 1 lata de creme de leite\n\n## Modo de Preparo\n\n1. Pré-aqueça o forno a 180°C\n2. Misture os ingredientes secos\n3. Adicione os líquidos e mexa bem\n4. Asse por 35-40 minutos\n\n**Dica:** Use chocolate de boa qualidade para melhor sabor! 🍫",
+		"tags": ["receita", "doce", "chocolate", "cozinha"],
+		"ctime": "2026-02-12T14:20:30.789Z",
+		"mtime": "2026-02-13T09:45:15.234Z"
+	},
+	{
+		"id": "01936b7f-2b3c-713d-9f55-6f4a2d9e8f7g",
+		"title": "Configuração do Ambiente de Desenvolvimento",
+		"content": "# Setup do Ambiente Dev\n\n## Node.js e npm\n\n```bash\nnvm install node\nnpm install -g yarn\n```\n\n## Extensões VS Code Essenciais\n\n- **ES7+ React/Redux/React-Native snippets**\n- **Prettier - Code formatter**\n- **ESLint**\n- **GitLens**\n- **Auto Rename Tag**\n\n## Configuração Git\n\n```bash\ngit config --global user.name \"Seu Nome\"\ngit config --global user.email \"seu@email.com\"\ngit config --global init.defaultBranch main\n```\n\n### Aliases úteis:\n- `git config --global alias.co checkout`\n- `git config --global alias.br branch`\n- `git config --global alias.ci commit`",
+		"tags": ["desenvolvimento", "config", "ferramentas", "git"],
+		"ctime": "2026-02-11T16:45:10.567Z"
+	},
+	{
+		"id": "01936b7f-3c4d-714e-af66-7f5a3e9f8g7h",
+		"title": "Ideias para Aplicativo Mobile",
+		"content": "# App de Gestão Pessoal\n\n## Features Principais\n\n### 📅 **Calendário Inteligente**\n- Sincronização com Google Calendar\n- Lembretes baseados em localização\n- Categorização automática de eventos\n\n### 💰 **Controle Financeiro**\n- Categorização de gastos\n- Metas mensais\n- Gráficos de evolução\n- OCR para nota fiscal\n\n### 🎯 **Metas e Hábitos**\n- Sistema de pontuação\n- Streaks de atividades\n- Relatórios semanais\n\n## Stack Técnica\n\n- **Frontend**: React Native + TypeScript\n- **Backend**: Node.js + PostgreSQL\n- **Auth**: Firebase Auth\n- **Cloud**: AWS/Vercel\n\n---\n\n*Validar ideia com possíveis usuários antes de começar desenvolvimento*",
+		"tags": ["mobile", "app", "ideias", "startup"],
+		"ctime": "2026-02-10T11:30:25.890Z",
+		"mtime": "2026-02-12T13:22:45.123Z"
+	},
+	{
+		"id": "01936b7f-4d5e-715f-bg77-8g6a4f9g8h7i",
+		"title": "Resumo: Clean Architecture",
+		"content": "# Clean Architecture - Uncle Bob\n\n## Princípios Fundamentais\n\n### 🏗️ **Camadas da Arquitetura**\n\n1. **Entities** (Entidades)\n   - Regras de negócio mais gerais\n   - Independentes de qualquer aplicação específica\n\n2. **Use Cases** (Casos de Uso)\n   - Regras de negócio específicas da aplicação\n   - Orquestram fluxo de dados para/das entidades\n\n3. **Interface Adapters**\n   - Convertem dados entre use cases e frameworks\n   - Controllers, Gateways, Presenters\n\n4. **Frameworks & Drivers**\n   - Detalhes externos: UI, DB, Web, etc.\n\n### ✅ **Benefícios**\n\n- **Testabilidade**: Fácil de testar isoladamente\n- **Independência**: Frameworks podem ser trocados\n- **Manutenibilidade**: Código organizado e limpo\n\n### 📐 **Regra da Dependência**\n\n> *Dependências sempre apontam para dentro*\n\n```\nFrameworks → Interface Adapters → Use Cases → Entities\n```",
+		"tags": ["arquitetura", "software", "clean-code", "estudos"],
+		"ctime": "2026-02-09T20:15:40.234Z"
+	},
+	{
+		"id": "01936b7f-5e6f-716g-ch88-9h7a5g9h8i7j",
+		"title": "Planejamento de Viagem - Europa",
+		"content": "# Eurotrip 2026 🇪🇺\n\n## Roteiro (15 dias)\n\n### Semana 1\n- **Paris** (3 dias)\n  - Torre Eiffel, Louvre, Montmartre\n  - Budget: €150/dia\n\n- **Amsterdam** (2 dias)\n  - Canais, Museus, Jordaan\n  - Budget: €120/dia\n\n- **Berlim** (2 dias)\n  - História, arte, vida noturna\n  - Budget: €100/dia\n\n### Semana 2\n- **Praga** (2 dias)\n  - Centro histórico, cervejarias\n  - Budget: €80/dia\n\n- **Viena** (2 dias)\n  - Palácios, música clássica\n  - Budget: €110/dia\n\n- **Budapeste** (2 dias)\n  - Termas, Parlamento, Danúbio\n  - Budget: €90/dia\n\n- **Roma** (2 dias)\n  - Coliseu, Vaticano, comida\n  - Budget: €130/dia\n\n## ✈️ Transporte\n- **Eurail Pass**: €450\n- **Voos**: Lisboa → Paris, Roma → Lisboa\n\n## 💰 **Budget Total Estimado**: €2.500",
+		"tags": ["viagem", "europa", "planejamento", "férias"],
+		"ctime": "2026-02-08T13:20:55.678Z",
+		"mtime": "2026-02-11T18:35:12.456Z"
+	},
+	{
+		"id": "01936b7f-6f7g-717h-di99-ah8a6h9i8j7k",
+		"title": "Exercícios de TypeScript",
+		"content": "# TypeScript - Exercícios Práticos\n\n## 1. Tipos Básicos\n\n```typescript\n// Definir interface para Usuario\ninterface Usuario {\n  id: number;\n  nome: string;\n  email: string;\n  ativo?: boolean;\n}\n\n// Função que valida email\nfunction validarEmail(email: string): boolean {\n  const regex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n  return regex.test(email);\n}\n```\n\n## 2. Generics\n\n```typescript\n// Array wrapper com métodos utilitários\nclass ArrayUtil<T> {\n  constructor(private items: T[]) {}\n  \n  first(): T | undefined {\n    return this.items[0];\n  }\n  \n  filter(predicate: (item: T) => boolean): T[] {\n    return this.items.filter(predicate);\n  }\n}\n```\n\n## 3. Union Types\n\n```typescript\ntype Status = 'pending' | 'success' | 'error';\ntype ID = string | number;\n\ninterface ApiResponse<T> {\n  status: Status;\n  data?: T;\n  message?: string;\n}\n```\n\n**Próximo:** Estudar Utility Types e Mapped Types",
+		"tags": ["typescript", "programação", "exercícios", "estudo"],
+		"ctime": "2026-02-07T10:45:30.123Z"
+	},
+	{
+		"id": "01936b7f-7g8h-718i-ej11-bi9a7i9j8k7l",
+		"title": "Anotações da Reunião - Product Planning",
+		"content": "# Reunião Product Planning\n**Data**: 13/02/2026 | **Duração**: 1h30min\n\n## 👥 Participantes\n- Ana (Product Owner)\n- Carlos (Tech Lead)\n- Maria (UX Designer)\n- João (Frontend)\n- Eu (Fullstack)\n\n## 📋 Tópicos Discutidos\n\n### MVP Features\n1. **Autenticação Social**\n   - Google e Apple Sign-in\n   - Prioridade: Alta\n   - Responsável: João\n\n2. **Dashboard Principal**\n   - Cards com métricas\n   - Gráficos básicos\n   - Prioridade: Alta\n   - Responsável: Maria + Eu\n\n3. **CRUD de Projetos**\n   - Criar, ler, editar, excluir\n   - Filtros e busca\n   - Prioridade: Média\n   - Responsável: Eu\n\n### ⏰ **Timeline**\n- **Sprint 1** (2 semanas): Auth + Setup\n- **Sprint 2** (2 semanas): Dashboard\n- **Sprint 3** (2 semanas): CRUD + Polish\n\n## ✅ Action Items\n- [ ] Ana: Definir critérios de aceite\n- [ ] Carlos: Setup do backend\n- [ ] Maria: Wireframes do dashboard\n- [x] Todos: Review da arquitetura",
+		"tags": ["reunião", "product", "planning", "trabalho"],
+		"ctime": "2026-02-13T14:30:15.789Z"
+	},
+	{
+		"id": "01936b7f-8h9i-719j-fk22-cj9a8j9k8l7m",
+		"title": "Dicas de Produtividade",
+		"content": "# 🚀 Produtividade Maximum\n\n## ⏰ Técnica Pomodoro\n\n### Como Funcionar\n1. Escolha uma tarefa\n2. Configure timer para 25min\n3. Trabalhe focado até tocar\n4. Pausa de 5min\n5. Repita 4x, depois pausa longa (30min)\n\n### 📱 Apps Recomendados\n- **Focus Keeper** (iOS)\n- **PomoDone** (multiplataforma)\n- **Forest** (gamificação)\n\n## 🎯 Matriz de Eisenhower\n\n| | Urgente | Não Urgente |\n|---|---|---|\n| **Importante** | ⚡ Fazer Agora | 📅 Agendar |\n| **Não Importante** | 👥 Delegar | 🗑️ Eliminar |\n\n## 📝 Regras Gerais\n\n- **Regra dos 2 minutos**: Se leva menos de 2min, faça agora\n- **Time blocking**: Reserve blocos de tempo específicos\n- **Single tasking**: Uma coisa de cada vez\n- **Digital detox**: Silencie notificações durante trabalho focado\n\n### 🔋 **Energia ao longo do dia**\n- **Manhã**: Tarefas mais complexas\n- **Tarde**: Reuniões e comunicação\n- **Final do dia**: Tarefas administrativas\n\n*\"A produtividade não é sobre ser ocupado, é sobre ser efetivo\"*",
+		"tags": ["produtividade", "técnicas", "pomodoro", "organização"],
+		"ctime": "2026-02-06T09:15:20.345Z",
+		"mtime": "2026-02-13T12:10:33.678Z"
+	},
+	{
+		"id": "01936b7f-9i9j-71ak-gl33-dk9a9k9l8m7n",
+		"title": "Comandos Git Essenciais",
+		"content": "# Git Commands Cheat Sheet\n\n## 🔄 Workflow Básico\n\n```bash\n# Inicializar repositório\ngit init\ngit remote add origin <url>\n\n# Clonar repositório\ngit clone <url>\ncd <project>\n\n# Status e informações\ngit status\ngit log --oneline\ngit diff\n```\n\n## 🌿 Branches\n\n```bash\n# Criar e trocar para nova branch\ngit checkout -b feature/nova-funcionalidade\n\n# Listar branches\ngit branch -a\n\n# Trocar de branch\ngit checkout main\n\n# Merge\ngit merge feature/nova-funcionalidade\n\n# Deletar branch\ngit branch -d feature/nova-funcionalidade\n```\n\n## 💾 Commits e Push\n\n```bash\n# Adicionar arquivos\ngit add .\ngit add arquivo.js\n\n# Commit\ngit commit -m \"Add: nova funcionalidade\"\ngit commit --amend  # editar último commit\n\n# Push\ngit push origin main\ngit push -u origin feature/branch  # primeira vez\n```\n\n## 🔧 Comandos Avançados\n\n```bash\n# Desfazer changes\ngit checkout -- arquivo.js\ngit reset HEAD arquivo.js\n\n# Stash (guardar mudanças temporariamente)\ngit stash\ngit stash pop\ngit stash list\n\n# Rebase interativo\ngit rebase -i HEAD~3\n\n# Cherry-pick\ngit cherry-pick <commit-hash>\n```\n\n## 🚨 **Emergências**\n\n```bash\n# Voltar para commit específico\ngit reset --hard <commit-hash>\n\n# Forçar push (cuidado!)\ngit push --force-with-lease\n```",
+		"tags": ["git", "comandos", "versionamento", "desenvolvimento"],
+		"ctime": "2026-02-05T16:20:45.567Z"
+	}
+]
