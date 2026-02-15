@@ -1,11 +1,14 @@
-import { View, Text, Pressable } from 'react-native';
+import { View } from 'react-native';
+
+import { Text } from 'react-native-paper';
 
 import useStyles from './styles';
 import { useTheme } from '@/contexts/themeContext';
+import { ReactNode } from 'react';
 
 interface HeaderProps {
 	title: string;
-	onSearch: (query: string) => void;
+	rightComponent?: ReactNode;
 }
 
 export default function Header(props: HeaderProps) {
@@ -14,7 +17,8 @@ export default function Header(props: HeaderProps) {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>{props.title}</Text>
+			<Text variant='headlineLarge'>{props.title}</Text>
+			{props.rightComponent ? props.rightComponent : null}
 		</View>
 	);
 }

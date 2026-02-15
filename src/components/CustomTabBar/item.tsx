@@ -2,14 +2,14 @@ import { Pressable, PressableProps, Text, View } from 'react-native';
 
 import MaterialIcon from '@react-native-vector-icons/material-design-icons';
 
-import { MaterialIconName } from '@/types/theme';
+import { IconName } from '@/types/theme';
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
 import Animated from 'react-native-reanimated';
 
 interface TabBarItemProps extends PressableProps {
-	icon: MaterialIconName;
-	iconOnFocus?: MaterialIconName;
+	icon: IconName;
+	iconOnFocus?: IconName;
 	isFocused: boolean;
 	label: string;
 }

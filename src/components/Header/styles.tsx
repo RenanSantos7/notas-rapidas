@@ -11,8 +11,5 @@ export default function useStyles(theme: ThemeProps) {
 			paddingInline: SCREEN_HORIZONTAL_PADDING,
 			paddingVertical: 16,
 		},
-		title: {
-			fontSize: 20,
-		},
 	});
 }

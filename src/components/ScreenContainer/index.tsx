@@ -2,10 +2,9 @@ import { ReactNode } from 'react';
 
 import { StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
-import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 import { useTheme } from '@/contexts/themeContext';
 
 interface ScreenContainerProps {
@@ -42,8 +41,8 @@ export default function ScreenContainer({
 			flex: 1,
 			paddingTop: !!noPadding
 				? insets.top
-				: insets.top + theme.size.spacing.md,
-			backgroundColor: theme.colors.background.main,
+				: insets.top + theme.sizes.spacing.md,
+			backgroundColor: theme.colors.background,
 		},
 		content: {
 			flexGrow: 1,
@@ -51,7 +50,7 @@ export default function ScreenContainer({
 			alignItems: centered ? 'center' : 'stretch',
 			paddingBottom: scroll
 				? insets.bottom
-				: insets.bottom + theme.size.spacing.md,
+				: insets.bottom + theme.sizes.spacing.md,
 		},
 	});
 
@@ -60,7 +59,7 @@ export default function ScreenContainer({
 			<KeyboardAwareScrollView
 				style={styles.container}
 				contentContainerStyle={[styles.content, contentStyle]}
-				extraKeyboardSpace={theme.size.spacing.xxl}
+				extraKeyboardSpace={theme.sizes.spacing.xxl}
 			>
 				<CustomStatusBar isDarkMode={isDarkTheme} />
 				{children}

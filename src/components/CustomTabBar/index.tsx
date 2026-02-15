@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { Keyboard, View } from 'react-native';
+import { Keyboard } from 'react-native';
 
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import {
 	CommonActions,
 	ParamListBase,
 	TabNavigationState,
-	useNavigation,
 } from '@react-navigation/native';
 
-import { RootTabsParams } from '@/routes/app.routes';
-import { useTheme } from '@/contexts/themeContext';
-import useStyles from './styles';
-import TabItem from './item';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomNavigation } from 'react-native-paper';
 
 interface CustomTabBarProps {

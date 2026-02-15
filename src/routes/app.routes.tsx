@@ -6,6 +6,7 @@ import MaterialIcons from '@react-native-vector-icons/material-design-icons';
 import HomeRoutes, { HomeStackParams } from './home.routes';
 import Settings from '@/screens/Settings';
 import CustomTabBar from '@/components/CustomTabBar';
+import Search from '@/screens/Search';
 
 export type RootTabsParams = {
 	HomeStack: NavigatorScreenParams<HomeStackParams>;
@@ -28,15 +29,21 @@ export default function Routes() {
 				name='HomeStack'
 				component={HomeRoutes}
 				options={{
+					title: 'Início',
 					tabBarIcon: ({ color, size }) => (
-						<MaterialIcons name='home' color={color} size={size} />
+						<MaterialIcons
+							name='home'
+							color={color}
+							size={size}
+						/>
 					),
 				}}
 			/>
 			<Tabs.Screen
 				name='Search'
-				component={HomeRoutes}
+				component={Search}
 				options={{
+					title: 'Buscar',
 					tabBarIcon: ({ color, size }) => (
 						<MaterialIcons
 							name='magnify'
@@ -50,8 +57,13 @@ export default function Routes() {
 				name='Settings'
 				component={Settings}
 				options={{
+					title: 'Opções',
 					tabBarIcon: ({ color, size }) => (
-						<MaterialIcons name='cog' color={color} size={size} />
+						<MaterialIcons
+							name='cog'
+							color={color}
+							size={size}
+						/>
 					),
 				}}
 			/>

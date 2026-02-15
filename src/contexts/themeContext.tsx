@@ -1,38 +1,44 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext, useMemo } from 'react';
 
 import { useColorScheme } from 'react-native';
 
+import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
+import { useMaterial3Theme } from '@pchmn/expo-material3-theme';
+
 import { ThemeProps } from '@/types/theme';
 import { sizes } from '@/styles/sizes';
-import { lightTheme } from '@/styles/lightTheme';
-import { Material3Theme, useMaterial3Theme } from '@pchmn/expo-material3-theme';
 
 interface IThemeContext {
-	isDarkTheme: boolean;
 	theme: ThemeProps;
+	isDarkTheme: boolean;
 }
 
 const ThemeContext = createContext<IThemeContext>(undefined);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-	const colorScheme = useColorScheme();
-	const materialTheme = useMaterial3Theme({
-		fallbackSourceColor: '#157ee0',
-	});
+	const isDarkTheme = useColorScheme() == 'dark';
 
-	const theme = {
-		colors: materialTheme.theme[colorScheme],
-		size: sizes,
-	};
+	const { theme: materialTheme } = useMaterial3Theme();
+
+	const theme = useMemo(
+		() =>
+			isDarkTheme
+				? {
+						...MD3DarkTheme,
+						colors: materialTheme.dark,
+						sizes,
+					}
+				: {
+						...MD3LightTheme,
+						colors: materialTheme.light,
+						sizes,
+					},
+		[isDarkTheme, materialTheme],
+	);
 
 	return (
-		<ThemeContext.Provider
-			value={{
-				isDarkTheme: colorScheme == 'dark',
-				theme,
-			}}
-		>
-			{children}
+		<ThemeContext.Provider value={{ isDarkTheme, theme }}>
+			<PaperProvider theme={theme}>{children}</PaperProvider>
 		</ThemeContext.Provider>
 	);
 }
