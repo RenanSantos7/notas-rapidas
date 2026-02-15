@@ -8,6 +8,8 @@
  * @param chars o número de caracteres máximo
  */
 export default function limitString(str: string | string[], chars: number): string {
+    if (!str) return ''
+
     function getLimitedString(value: string) {
         if (!chars || chars >= value.length) {
             return value

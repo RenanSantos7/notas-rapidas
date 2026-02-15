@@ -1,0 +1,10 @@
+import { ThemeProps } from '@/types/theme';
+import { StyleSheet } from 'react-native';
+
+export default function useStyles(theme: ThemeProps) {
+    return StyleSheet.create({
+        list: {
+            paddingBottom: 120,
+        },
+    });
+}

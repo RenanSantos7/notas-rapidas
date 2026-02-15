@@ -9,7 +9,7 @@ import { useTheme } from '@/contexts/themeContext';
 
 interface ScreenContainerProps {
 	children: ReactNode;
-	scroll?: boolean;
+	// scroll?: boolean;
 	centered?: boolean;
 	contentStyle?: ViewStyle;
 	noPadding?: boolean;
@@ -28,7 +28,7 @@ interface ScreenContainerProps {
  * @param centered - *Optional*. Determines if the `ScreenContainer` should center the content.
  */
 export default function ScreenContainer({
-	scroll = true,
+	// scroll = true,
 	centered = false,
 	children,
 	contentStyle,
@@ -48,13 +48,11 @@ export default function ScreenContainer({
 			flexGrow: 1,
 			justifyContent: centered ? 'center' : 'flex-start',
 			alignItems: centered ? 'center' : 'stretch',
-			paddingBottom: scroll
-				? insets.bottom
-				: insets.bottom + theme.sizes.spacing.md,
+			paddingBottom: insets.bottom + theme.sizes.spacing.md,
 		},
 	});
 
-	if (scroll)
+	/* if (scroll)
 		return (
 			<KeyboardAwareScrollView
 				style={styles.container}
@@ -64,7 +62,7 @@ export default function ScreenContainer({
 				<CustomStatusBar isDarkMode={isDarkTheme} />
 				{children}
 			</KeyboardAwareScrollView>
-		);
+		); */
 
 	return (
 		<View style={styles.container}>

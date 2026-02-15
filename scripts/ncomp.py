@@ -44,6 +44,8 @@ export default function {component_name}(props: {component_name}Props) {{
     # Template para styles.tsx
     styles_content = """import { StyleSheet } from 'react-native';
 
+import { ThemeProps } from '@/types/theme';
+
 export default function useStyles(theme: ThemeProps) {
     return StyleSheet.create({
         container: {
