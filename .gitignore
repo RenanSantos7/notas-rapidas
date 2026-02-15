@@ -22,9 +22,6 @@ ios
 *.key
 *.mobileprovision
 android/**/build
-android/gradle
-android/gradlew
-.gradle
 
 # Metro
 .metro-health-check*
