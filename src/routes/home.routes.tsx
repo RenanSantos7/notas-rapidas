@@ -1,10 +1,17 @@
+import EditNote from '@/screens/EditNote';
 import Home from '@/screens/Home';
-import Note from '@/screens/Note';
+import NoteDisplay from '@/screens/NoteDisplay';
+import { NoteProps } from '@/types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+type NoteRoute = {
+	note: NoteProps;
+}
 
 export type HomeStackParams = {
 	Home: undefined;
-	Note: undefined;
+	NoteDisplay: NoteRoute;
+	EditNote: NoteRoute | undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParams>();
@@ -18,7 +25,8 @@ export default function HomeRoutes() {
 			}}
 		>
 			<Stack.Screen name='Home' component={Home} />
-			<Stack.Screen name='Note' component={Note} />
+			<Stack.Screen name='NoteDisplay' component={NoteDisplay} />
+			<Stack.Screen name='EditNote' component={EditNote} />
 		</Stack.Navigator>
 	);
 }

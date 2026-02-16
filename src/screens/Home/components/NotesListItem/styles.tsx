@@ -9,7 +9,8 @@ export default function useStyles(theme: ThemeProps) {
             paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
             paddingTop: 15,
             paddingBottom: 20,
-            backgroundColor: theme.colors.surfaceBright,
+            backgroundColor: theme.colors.background,
+            gap: 14,
         },
     });
 }

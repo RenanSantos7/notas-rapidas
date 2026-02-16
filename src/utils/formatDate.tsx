@@ -1,6 +1,3 @@
-import { format, parseISO } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-
 /**
  * Recebe uma string em formato ISO e retorna uma string no formato 'dd/MMM/yy',
  * @example 
@@ -9,9 +6,6 @@ import { ptBR } from 'date-fns/locale';
  * @returns A string formatada.
  */
 export default function formatDate(date: string) {
-	const parsedDate = parseISO(date);
-	const dateObj = new Date(parsedDate);
-	const day = dateObj.getDate();
-	if (day === 1) return format(parsedDate, 'do/MMM/yy', { locale: ptBR });
-	return format(parsedDate, 'dd/MMM/yy', { locale: ptBR });
+	const dateObj = new Date(date);
+	return dateObj.toLocaleDateString('pt-BR');
 }

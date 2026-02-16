@@ -52,18 +52,6 @@ export default function ScreenContainer({
 		},
 	});
 
-	/* if (scroll)
-		return (
-			<KeyboardAwareScrollView
-				style={styles.container}
-				contentContainerStyle={[styles.content, contentStyle]}
-				extraKeyboardSpace={theme.sizes.spacing.xxl}
-			>
-				<CustomStatusBar isDarkMode={isDarkTheme} />
-				{children}
-			</KeyboardAwareScrollView>
-		); */
-
 	return (
 		<View style={styles.container}>
 			<CustomStatusBar isDarkMode={isDarkTheme} />
