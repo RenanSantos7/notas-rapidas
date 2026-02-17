@@ -1,5 +1,12 @@
 [
 	{
+		"id": "01936b8e-8c5a-7121-9d44-3f2a1b9c8e7f",
+		"title": "Boilerplate",
+		"content": "Função simples Js:\n\n```js\nfunction soma(a,b)\treturn a + b\n```\n\nSoma dois números",
+		"tags": ["javascritp"],
+		"ctime": "2026-02-15T22:30:45.123Z"
+	},
+	{
 		"id": "01936b7e-8c5a-7120-9d44-3f2a1b9c8e7f",
 		"title": "Lista de Tarefas Diárias",
 		"content": "# Tarefas para Hoje\n\n- [x] Revisar projeto React Native\n- [ ] Finalizar documentação da API\n- [ ] Reunião com equipe às 15h\n- [ ] Estudar TypeScript avançado\n\n## Prioridades\n\n1. **Alta**: Entrega do MVP\n2. **Média**: Testes unitários\n3. **Baixa**: Refatoração de código\n\n> Lembrar de fazer backup do projeto!",

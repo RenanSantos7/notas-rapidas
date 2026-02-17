@@ -4,13 +4,13 @@ import { ThemeProps } from '@/types/theme';
 import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 
 export default function useStyles(theme: ThemeProps) {
-    return StyleSheet.create({
-        container: {
-            paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
-            paddingTop: 15,
-            paddingBottom: 20,
-            backgroundColor: theme.colors.background,
-            gap: 14,
-        },
-    });
+	return StyleSheet.create({
+		container: {
+			paddingTop: 15,
+			paddingBottom: 20,
+			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
+			backgroundColor: theme.colors.inverseOnSurface,
+			borderRadius: 24,
+		},
+	});
 }

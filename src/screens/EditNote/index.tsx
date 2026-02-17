@@ -11,7 +11,7 @@ import { useTheme } from '@/contexts/themeContext';
 import { useDataContext } from '@/contexts/dataContext';
 
 export default function EditNote() {
-	const { navigate } = useNavigation<NavigationProp<HomeStackParams>>();
+	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
 	const { createNote } = useDataContext();
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
@@ -25,8 +25,8 @@ export default function EditNote() {
 			title,
 			content,
 			tags,
-        });
-        navigate('Home');
+		});
+		navigation.navigate('Home');
 	}
 
 	return (

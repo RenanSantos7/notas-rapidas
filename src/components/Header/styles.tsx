@@ -11,5 +11,10 @@ export default function useStyles(theme: ThemeProps) {
 			paddingInline: SCREEN_HORIZONTAL_PADDING,
 			paddingVertical: 16,
 		},
+		left: {
+			flexDirection: 'row',
+			gap: 10,
+			alignItems: 'center',
+		},
 	});
 }

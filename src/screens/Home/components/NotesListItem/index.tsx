@@ -26,7 +26,7 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 		>
 			<Surface style={styles.container} mode='flat'>
 				<View>
-					<Text variant='titleLarge'>{note.title}</Text>
+					<Text variant='titleMedium'>{note.title}</Text>
 					<Text variant='labelSmall'>
 						{formatDate(note.mtime || note.ctime)}
 					</Text>
