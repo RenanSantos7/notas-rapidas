@@ -1,3 +1,11 @@
+import { RootTabsParams } from '@/routes/app.routes';
+
+declare global {
+	namespace ReactNavigation {
+		interface RootParamList extends RootTabsParams {}
+	}
+}
+
 export type CrudeNoteProps = {
 	title: string;
 	content: string; // sintaxe markdown

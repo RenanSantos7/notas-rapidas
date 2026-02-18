@@ -1,10 +1,11 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { FAB } from 'react-native-paper';
+
 import { HomeStackParams } from '@/routes/home.routes';
 import { useDataContext } from '@/contexts/dataContext';
-import NotesList from './components/NotesList';
-import Header from '../../components/Header';
+import NotesList from '@/components/NotesList';
+import Header from '@/components/Header';
 import ScreenContainer from '@/components/ScreenContainer';
 import useStyles from './styles';
 
