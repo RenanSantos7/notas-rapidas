@@ -8,7 +8,6 @@ export default function useStyles(theme: ThemeProps) {
 			flexDirection: 'row',
 			alignItems: 'center',
 			justifyContent: 'space-between',
-			paddingInline: SCREEN_HORIZONTAL_PADDING,
 			paddingVertical: 16,
 		},
 		left: {

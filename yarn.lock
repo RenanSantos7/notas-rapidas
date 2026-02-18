@@ -3818,6 +3818,11 @@ react-native-enriched-markdown@^0.2.1:
   resolved "https://registry.yarnpkg.com/react-native-enriched-markdown/-/react-native-enriched-markdown-0.2.1.tgz#475b67cb5204d49cbbed33653c9ca60a37086065"
   integrity sha512-ymzjHmyJAK1qjDb6Q23U7SCFjvfOReRXZnaIY+mUtkwCZruB69tm9z7tkXtVlw+FWqxcL5HDadc6Ok4KZOPznA==
 
+react-native-enriched@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-enriched/-/react-native-enriched-0.4.0.tgz#032e576167f44ff0af5c783f2da787b231cdd535"
+  integrity sha512-Pqu2Hm06URh4jD/xTwb5+zwSkyR/ylsFx8i00EdzItv5I12PM6aW+XQQH0IjBV76OwzHWbieVxr+2P2+34cvWQ==
+
 react-native-is-edge-to-edge@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.2.1.tgz#64e10851abd9d176cbf2b40562f751622bde3358"

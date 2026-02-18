@@ -6,6 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/contexts/themeContext';
+import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 
 interface ScreenContainerProps {
 	children: ReactNode;
@@ -32,7 +33,7 @@ export default function ScreenContainer({
 	centered = false,
 	children,
 	contentStyle,
-	noPadding,
+	noPadding = false,
 }: ScreenContainerProps) {
 	const { theme, isDarkTheme } = useTheme();
 	const insets = useSafeAreaInsets();
@@ -45,27 +46,22 @@ export default function ScreenContainer({
 			backgroundColor: theme.colors.background,
 		},
 		content: {
-			flexGrow: 1,
+			flex: 1,
 			justifyContent: centered ? 'center' : 'flex-start',
 			alignItems: centered ? 'center' : 'stretch',
+			paddingHorizontal: noPadding ? 0 : SCREEN_HORIZONTAL_PADDING,
 			paddingBottom: insets.bottom + theme.sizes.spacing.md,
 		},
 	});
 
 	return (
 		<View style={styles.container}>
-			<CustomStatusBar isDarkMode={isDarkTheme} />
+			<StatusBar
+				barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
+				backgroundColor='transparent'
+				translucent
+			/>
 			<View style={[styles.content, contentStyle]}>{children}</View>
 		</View>
-	);
-}
-
-function CustomStatusBar({ isDarkMode }: { isDarkMode: boolean }) {
-	return (
-		<StatusBar
-			barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-			backgroundColor='transparent'
-			translucent
-		/>
 	);
 }

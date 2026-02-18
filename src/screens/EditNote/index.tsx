@@ -9,6 +9,7 @@ import NoteTitle from './components/NoteTitle';
 import useStyles from './styles';
 import { useTheme } from '@/contexts/themeContext';
 import { useDataContext } from '@/contexts/dataContext';
+import TextEditor from './components/TextEditor';
 
 export default function EditNote() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
@@ -30,7 +31,7 @@ export default function EditNote() {
 	}
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer noPadding contentStyle={styles.container}>
 			<NoteTitle title={title} setTitle={setTitle} />
 
 			<TextInput
@@ -45,6 +46,8 @@ export default function EditNote() {
 					<TextInput.Icon icon='tag' color={theme.colors.backdrop} />
 				}
 			/>
+
+			<TextEditor />
 
 			<FAB
 				icon='content-save'
