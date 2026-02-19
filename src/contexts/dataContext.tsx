@@ -17,10 +17,7 @@ interface IDataContext {
 const DataContext = createContext<IDataContext>(undefined);
 
 export default function DataProvider({ children }: { children: ReactNode }) {
-	const [notes, setNotes] = usePersistentState<NoteProps[]>(
-		'@notes',
-		mockedNotes,
-	);
+	const [notes, setNotes] = usePersistentState<NoteProps[]>('@notes');
 
 	function createNote(data: CrudeNoteProps) {
 		const newNote = {

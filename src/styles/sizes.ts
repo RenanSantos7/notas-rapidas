@@ -14,6 +14,7 @@ export const sizes = {
 		md: 8,
 		lg: 12,
 		xl: 16,
+		xxxl: 999,
 	},
 	spacing: {
 		xsm: 4,

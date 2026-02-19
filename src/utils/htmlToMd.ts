@@ -14,6 +14,7 @@
  * ```
  */
 export default function convertHtmlToMd(text: string): string {
+	text = text.replace(/<\/?html>/g, '');
 	text = processTables(text);
 	text = processLists(text);
 	text = processCheckboxes(text);

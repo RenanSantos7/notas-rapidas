@@ -50,7 +50,7 @@ export default function ScreenContainer({
 			justifyContent: centered ? 'center' : 'flex-start',
 			alignItems: centered ? 'center' : 'stretch',
 			paddingHorizontal: noPadding ? 0 : SCREEN_HORIZONTAL_PADDING,
-			paddingBottom: insets.bottom + theme.sizes.spacing.md,
+			paddingBottom: insets.bottom,
 		},
 	});
 

@@ -1,61 +1,101 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, Dispatch, SetStateAction } from 'react';
 
-import { View, Button } from 'react-native';
-
-import {
-	EnrichedTextInput,
-	EnrichedTextInputInstance,
-	OnChangeStateEvent,
-} from 'react-native-enriched';
+import { View, TextInput, TextInputSelectionChangeEvent } from 'react-native';
 
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
-import Toolbar from './toolbar';
 import convertHtmlToMd from '@/utils/htmlToMd';
+import Toolbar from './toolbar';
+import { Divider } from 'react-native-paper';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
 interface TextEditorProps {
-	onSave: (text: string) => void;
+	value: string;
+	onChange: (text: string) => void;
+}
+
+interface SelecionProps {
+	start: number;
+	end: number;
 }
 
 export default function TextEditor(props: TextEditorProps) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
-	const [stylesState, setStylesState] = useState<OnChangeStateEvent | null>();
+	const [selection, setSelection] = useState<SelecionProps>({
+		start: 0,
+		end: 0,
+	});
 
-	const editorRef = useRef<EnrichedTextInputInstance>(null);
+	const editorRef = useRef(null);
 
-	async function handleSave() {
-		const html = await editorRef.current.getHTML();
-		const markdown = convertHtmlToMd(html);
-		props.onSave(markdown);
+	function handleSelectionChange(event: TextInputSelectionChangeEvent): void {
+		setSelection(event.nativeEvent.selection);
+	}
+
+	function wrapSelection(prefix: string, suffix: string = prefix) {
+		const { start, end } = selection;
+
+		if (start === null || end === null) return;
+
+		const before = props.value.slice(0, start);
+		const selected = props.value.slice(start, end);
+		const after = props.value.slice(end);
+
+		const newText = `${before}${prefix}${selected}${suffix}${after}`;
+		const cursorPos =
+			start + prefix.length + selected.length + suffix.length;
+
+		props.onChange(newText);
+		setSelection({ start: cursorPos, end: cursorPos });
+	}
+
+	function toggleHeading(level: 1 | 2 | 3 | 4 | 5 | 6 = 1): void {
+		const { start } = selection;
+		const text = props.value;
+
+		const lineStart = text.lastIndexOf('\n', start - 1) + 1;
+		const before = text.slice(0, lineStart);
+		const line = text.slice(lineStart, start).trim();
+		const after = text.slice(start);
+
+		const prefix = line.startsWith('#'.repeat(level) + ' ')
+			? ''
+			: '#'.repeat(level) + ' ';
+		const newLine = `${prefix}${line}`;
+		const newText = `${before}${newLine}${after}`;
+
+		props.onChange(newText);
+
+		const newCursor = lineStart + newLine.length;
+		setSelection({ start: newCursor, end: newCursor });
 	}
 
 	return (
 		<View style={styles.container}>
+			<Divider />
+			<TextInput
+				style={styles.input}
+				textAlignVertical='top'
+				value={props.value}
+				onChangeText={props.onChange}
+				ref={editorRef}
+				multiline
+				autoCorrect={false}
+				autoCapitalize='none'
+				selection={selection}
+				selectTextOnFocus={false}
+				spellCheck={false}
+				onSelectionChange={handleSelectionChange}
+			/>
 			<Toolbar
 				actions={{
-					bold: editorRef.current?.toggleBold,
-					italic: editorRef.current?.toggleItalic,
-					inlineCode: editorRef.current?.toggleInlineCode,
-					codeBlock: editorRef.current?.toggleCodeBlock,
-					h1: editorRef.current?.toggleH1,
-					h2: editorRef.current?.toggleH2,
-					h3: editorRef.current?.toggleH3,
-					h4: editorRef.current?.toggleH4,
-					h5: editorRef.current?.toggleH5,
-					h6: editorRef.current?.toggleH6,
-					blockquote: editorRef.current?.toggleBlockQuote,
-					orderedlist: editorRef.current?.toggleOrderedList,
-					unorderedlist: editorRef.current?.toggleUnorderedList,
-					chekboxlist: editorRef.current?.toggleCheckboxList,
-					save: handleSave,
+					bold: () => wrapSelection('**'),
+					italic: () => wrapSelection('*'),
+					h1: () => wrapSelection('# ', ''),
+					h2: () => wrapSelection('## ', '\n'),
 				}}
-			/>
-			<EnrichedTextInput
-				ref={editorRef}
-				onChangeState={e => setStylesState(e.nativeEvent)}
-				style={styles.input}
 			/>
 		</View>
 	);

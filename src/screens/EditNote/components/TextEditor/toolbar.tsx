@@ -57,32 +57,50 @@ export default function Toolbar({ actions }: ToolbarProps) {
 				<Menu.Item
 					leadingIcon='format-header-1'
 					title='Título 1'
-					onPress={actions.h1}
+					onPress={() => {
+						setHeadingMenu(false);
+						actions.h1();
+					}}
 				/>
 				<Menu.Item
 					leadingIcon='format-header-2'
 					title='Título 2'
-					onPress={actions.h2}
+					onPress={() => {
+						setHeadingMenu(false);
+						actions.h2();
+					}}
 				/>
 				<Menu.Item
 					leadingIcon='format-header-3'
 					title='Título 3'
-					onPress={actions.h3}
+					onPress={() => {
+						setHeadingMenu(false);
+						actions.h3();
+					}}
 				/>
 				<Menu.Item
 					leadingIcon='format-header-4'
 					title='Título 4'
-					onPress={actions.h4}
+					onPress={() => {
+						setHeadingMenu(false);
+						actions.h4();
+					}}
 				/>
 				<Menu.Item
 					leadingIcon='format-header-5'
 					title='Título 5'
-					onPress={actions.h5}
+					onPress={() => {
+						setHeadingMenu(false);
+						actions.h5();
+					}}
 				/>
 				<Menu.Item
 					leadingIcon='format-header-6'
 					title='Título 6'
-					onPress={actions.h6}
+					onPress={() => {
+						setHeadingMenu(false);
+						actions.h6();
+					}}
 				/>
 			</Menu>
 			<Button icon='format-quote-open' onPress={actions.blockquote} />
@@ -101,19 +119,26 @@ export default function Toolbar({ actions }: ToolbarProps) {
 				<Menu.Item
 					leadingIcon='format-list-bulleted'
 					title='Lista não ordenada'
-					onPress={actions.unorderedList}
+					onPress={() => {
+						setListMenu(false)
+						actions.unorderedlist()}}
 				/>
 				<Menu.Item
 					leadingIcon='format-list-numbered'
 					title='Lista ordenada'
-					onPress={actions.orderedList}
+					onPress={() => {
+						setListMenu(false)
+						actions.orderedlist()}}
 				/>
 				<Menu.Item
 					leadingIcon='format-list-checkbox'
 					title='Lista de tarefas'
-					onPress={actions.checkboxList}
+					onPress={() => {
+						setListMenu(false)
+						actions.chekboxlist()}}
 				/>
 			</Menu>
+			<Button icon='content-save' onPress={() => actions.save()} />
 		</Surface>
 	);
 }

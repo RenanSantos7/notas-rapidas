@@ -17,6 +17,11 @@ export default function useStyles(theme: ThemeProps) {
 		toolbar: {
 			flexDirection: 'row',
 			gap: 4,
+			alignItems: 'center',
+			justifyContent: 'center',
+			alignSelf: 'center',
+			paddingHorizontal: theme.sizes.spacing.sm,
+			borderRadius: theme.sizes.borderRadius.xxxl
 		},
 		icon: {
 			borderRadius: 8,
