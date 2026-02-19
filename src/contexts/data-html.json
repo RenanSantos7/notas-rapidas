@@ -1,0 +1,84 @@
+[
+	{
+		"id": "01936b8e-8c5a-7121-9d44-3f2a1b9c8e7f",
+		"title": "Boilerplate",
+		"content": "<p>Função simples Js:</p><pre><code></code></pre><p>function soma(a,b)\treturn a + b</p><pre><code></code></pre><p>Soma dois números</p>",
+		"tags": ["javascritp"],
+		"ctime": "2026-02-15T22:30:45.123Z"
+	},
+	{
+		"id": "01936b7e-8c5a-7120-9d44-3f2a1b9c8e7f",
+		"title": "Lista de Tarefas Diárias",
+		"content": "<h1>Tarefas para Hoje</h1><ul><li><label><input type=\"checkbox\" checked />Revisar projeto React Native</label></li><li><label><input type=\"checkbox\" />Finalizar documentação da API</label></li><li><label><input type=\"checkbox\" />Reunião com equipe às 15h</label></li><li><label><input type=\"checkbox\" />Estudar TypeScript avançado</label></li></ul><h2>Prioridades</h2><ol>\n<li><b>Alta</b>: Entrega do MVP</li><li><b>Média</b>: Testes unitários</li><li><b>Baixa</b>: Refatoração de código</li></ol><blockquote><p>Lembrar de fazer backup do projeto!</p></blockquote>",
+		"tags": ["produtividade", "trabalho", "tarefas"],
+		"ctime": "2026-02-13T08:30:45.123Z",
+		"mtime": "2026-02-13T10:15:22.456Z"
+	},
+	{
+		"id": "01936b7f-1a2b-712c-8e44-5f3a1c9d8e7f",
+		"title": "Receita de Bolo de Chocolate",
+		"content": "<h2>Ingredientes</h2><h3>Massa:</h3><ul><li>2 xícaras de farinha de trigo</li><li>1 1/2 xícara de açúcar</li><li>3/4 xícara de cacau em pó</li><li>2 ovos</li><li>1 xícara de leite</li><li>1/2 xícara de óleo</li></ul><h3>Cobertura:</h3><ul><li>200g de chocolate meio amargo</li><li>1 lata de creme de leite</li></ul><h2>Modo de Preparo</h2><ol>\n<li>Pré-aqueça o forno a 180°C</li><li>Misture os ingredientes secos</li><li>Adicione os líquidos e mexa bem</li><li>Asse por 35-40 minutos</li></ol><p><b>Dica:</b> Use chocolate de boa qualidade para melhor sabor! 🍫</p>",
+		"tags": ["receita", "doce", "chocolate", "cozinha"],
+		"ctime": "2026-02-12T14:20:30.789Z",
+		"mtime": "2026-02-13T09:45:15.234Z"
+	},
+	{
+		"id": "01936b7f-2b3c-713d-9f55-6f4a2d9e8f7g",
+		"title": "Configuração do Ambiente de Desenvolvimento",
+		"content": "<h1>Setup do Ambiente Dev</h1><h2>Node.js e npm</h2><pre><code></code></pre><p>nvm install node</p><p>npm install -g yarn</p><pre><code></code></pre><h2>Extensões VS Code Essenciais</h2><ul><li><b>ES7+ React/Redux/React-Native snippets</b></li><li><b>Prettier - Code formatter</b></li><li><b>ESLint</b></li><li><b>GitLens</b></li><li><b>Auto Rename Tag</b></li></ul><h2>Configuração Git</h2><pre><code></code></pre><p>git config --global user.name &quot;Seu Nome&quot;</p><p>git config --global user.email &quot;seu@email.com&quot;</p><p>git config --global init.defaultBranch main</p><pre><code></code></pre><h3>Aliases úteis:</h3><ul><li><code>git config --global alias.co checkout</code></li><li><code>git config --global alias.br branch</code></li><li><code>git config --global alias.ci commit</code></li></ul>",
+		"tags": ["desenvolvimento", "config", "ferramentas", "git"],
+		"ctime": "2026-02-11T16:45:10.567Z"
+	},
+	{
+		"id": "01936b7f-3c4d-714e-af66-7f5a3e9f8g7h",
+		"title": "Ideias para Aplicativo Mobile",
+		"content": "<h1>App de Gestão Pessoal</h1><h2>Features Principais</h2><h3>📅 <b>Calendário Inteligente</b></h3><ul><li>Sincronização com Google Calendar</li><li>Lembretes baseados em localização</li><li>Categorização automática de eventos</li></ul><h3>💰 <b>Controle Financeiro</b></h3><ul><li>Categorização de gastos</li><li>Metas mensais</li><li>Gráficos de evolução</li><li>OCR para nota fiscal</li></ul><h3>🎯 <b>Metas e Hábitos</b></h3><ul><li>Sistema de pontuação</li><li>Streaks de atividades</li><li>Relatórios semanais</li></ul><h2>Stack Técnica</h2><ul><li><b>Frontend</b>: React Native + TypeScript</li><li><b>Backend</b>: Node.js + PostgreSQL</li><li><b>Auth</b>: Firebase Auth</li><li><b>Cloud</b>: AWS/Vercel</li></ul><p>---</p><p><i>Validar ideia com possíveis usuários antes de começar desenvolvimento</i></p>",
+		"tags": ["mobile", "app", "ideias", "startup"],
+		"ctime": "2026-02-10T11:30:25.890Z",
+		"mtime": "2026-02-12T13:22:45.123Z"
+	},
+	{
+		"id": "01936b7f-4d5e-715f-bg77-8g6a4f9g8h7i",
+		"title": "Resumo: Clean Architecture",
+		"content": "<h1>Clean Architecture - Uncle Bob</h1><h2>Princípios Fundamentais</h2><h3>🏗️ <b>Camadas da Arquitetura</b></h3><ol>\n<li><b>Entities</b> (Entidades)</li></ol><p>- Regras de negócio mais gerais</p><p>- Independentes de qualquer aplicação específica</p><ol>\n<li><b>Use Cases</b> (Casos de Uso)</li></ol><p>- Regras de negócio específicas da aplicação</p><p>- Orquestram fluxo de dados para/das entidades</p><ol>\n<li><b>Interface Adapters</b></li></ol><p>- Convertem dados entre use cases e frameworks</p><p>- Controllers, Gateways, Presenters</p><ol>\n<li><b>Frameworks &amp; Drivers</b></li></ol><p>- Detalhes externos: UI, DB, Web, etc.</p><h3>✅ <b>Benefícios</b></h3><ul><li><b>Testabilidade</b>: Fácil de testar isoladamente</li><li><b>Independência</b>: Frameworks podem ser trocados</li><li><b>Manutenibilidade</b>: Código organizado e limpo</li></ul><h3>📐 <b>Regra da Dependência</b></h3><blockquote><p><i>Dependências sempre apontam para dentro</i></p></blockquote><pre><code></code></pre><p>Frameworks → Interface Adapters → Use Cases → Entities</p><pre><code></code></pre>",
+		"tags": ["arquitetura", "software", "clean-code", "estudos"],
+		"ctime": "2026-02-09T20:15:40.234Z"
+	},
+	{
+		"id": "01936b7f-5e6f-716g-ch88-9h7a5g9h8i7j",
+		"title": "Planejamento de Viagem - Europa",
+		"content": "<h1>Eurotrip 2026 🇪🇺</h1><h2>Roteiro (15 dias)</h2><h3>Semana 1</h3><ul><li><b>Paris</b> (3 dias)</li></ul><p>- Torre Eiffel, Louvre, Montmartre</p><p>- Budget: €150/dia</p><ul><li><b>Amsterdam</b> (2 dias)</li></ul><p>- Canais, Museus, Jordaan</p><p>- Budget: €120/dia</p><ul><li><b>Berlim</b> (2 dias)</li></ul><p>- História, arte, vida noturna</p><p>- Budget: €100/dia</p><h3>Semana 2</h3><ul><li><b>Praga</b> (2 dias)</li></ul><p>- Centro histórico, cervejarias</p><p>- Budget: €80/dia</p><ul><li><b>Viena</b> (2 dias)</li></ul><p>- Palácios, música clássica</p><p>- Budget: €110/dia</p><ul><li><b>Budapeste</b> (2 dias)</li></ul><p>- Termas, Parlamento, Danúbio</p><p>- Budget: €90/dia</p><ul><li><b>Roma</b> (2 dias)</li></ul><p>- Coliseu, Vaticano, comida</p><p>- Budget: €130/dia</p><h2>✈️ Transporte</h2><ul><li><b>Eurail Pass</b>: €450</li><li><b>Voos</b>: Lisboa → Paris, Roma → Lisboa</li></ul><h2>💰 <b>Budget Total Estimado</b>: €2.500</h2>",
+		"tags": ["viagem", "europa", "planejamento", "férias"],
+		"ctime": "2026-02-08T13:20:55.678Z",
+		"mtime": "2026-02-11T18:35:12.456Z"
+	},
+	{
+		"id": "01936b7f-6f7g-717h-di99-ah8a6h9i8j7k",
+		"title": "Exercícios de TypeScript",
+		"content": "<h1>TypeScript - Exercícios Práticos</h1><h2>1. Tipos Básicos</h2><pre><code></code></pre><p>// Definir interface para Usuario</p><p>interface Usuario {</p><p>id: number;</p><p>nome: string;</p><p>email: string;</p><p>ativo?: boolean;</p><p>}</p><p>// Função que valida email</p><p>function validarEmail(email: string): boolean {</p><p>const regex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;</p><p>return regex.test(email);</p><p>}</p><pre><code></code></pre><h2>2. Generics</h2><pre><code></code></pre><p>// Array wrapper com métodos utilitários</p><p>class ArrayUtil&lt;T&gt; {</p><p>constructor(private items: T[]) {}</p><p>first(): T | undefined {</p><pre><code>return this.items[0];\n}\n\nfilter(predicate: (item: T) =&gt; boolean): T[] {\nreturn this.items.filter(predicate);\n}\n}\n</code></pre><h2>3. Union Types</h2><pre><code></code></pre><p>type Status = &#039;pending&#039; | &#039;success&#039; | &#039;error&#039;;</p><p>type ID = string | number;</p><p>interface ApiResponse&lt;T&gt; {</p><p>status: Status;</p><p>data?: T;</p><p>message?: string;</p><p>}</p><pre><code></code></pre><p><b>Próximo:</b> Estudar Utility Types e Mapped Types</p>",
+		"tags": ["typescript", "programação", "exercícios", "estudo"],
+		"ctime": "2026-02-07T10:45:30.123Z"
+	},
+	{
+		"id": "01936b7f-7g8h-718i-ej11-bi9a7i9j8k7l",
+		"title": "Anotações da Reunião - Product Planning",
+		"content": "<h1>Reunião Product Planning</h1><p><b>Data</b>: 13/02/2026 | <b>Duração</b>: 1h30min</p><h2>👥 Participantes</h2><ul><li>Ana (Product Owner)</li><li>Carlos (Tech Lead)</li><li>Maria (UX Designer)</li><li>João (Frontend)</li><li>Eu (Fullstack)</li></ul><h2>📋 Tópicos Discutidos</h2><h3>MVP Features</h3><ol>\n<li><b>Autenticação Social</b></li></ol><p>- Google e Apple Sign-in</p><p>- Prioridade: Alta</p><p>- Responsável: João</p><ol>\n<li><b>Dashboard Principal</b></li></ol><p>- Cards com métricas</p><p>- Gráficos básicos</p><p>- Prioridade: Alta</p><p>- Responsável: Maria + Eu</p><ol>\n<li><b>CRUD de Projetos</b></li></ol><p>- Criar, ler, editar, excluir</p><p>- Filtros e busca</p><p>- Prioridade: Média</p><p>- Responsável: Eu</p><h3>⏰ <b>Timeline</b></h3><ul><li><b>Sprint 1</b> (2 semanas): Auth + Setup</li><li><b>Sprint 2</b> (2 semanas): Dashboard</li><li><b>Sprint 3</b> (2 semanas): CRUD + Polish</li></ul><h2>✅ Action Items</h2><ul><li><label><input type=\"checkbox\" />Ana: Definir critérios de aceite</label></li><li><label><input type=\"checkbox\" />Carlos: Setup do backend</label></li><li><label><input type=\"checkbox\" />Maria: Wireframes do dashboard</label></li><li><label><input type=\"checkbox\" checked />Todos: Review da arquitetura</label></li></ul>",
+		"tags": ["reunião", "product", "planning", "trabalho"],
+		"ctime": "2026-02-13T14:30:15.789Z"
+	},
+	{
+		"id": "01936b7f-8h9i-719j-fk22-cj9a8j9k8l7m",
+		"title": "Dicas de Produtividade",
+		"content": "<h1>🚀 Produtividade Maximum</h1><h2>⏰ Técnica Pomodoro</h2><h3>Como Funcionar</h3><ol>\n<li>Escolha uma tarefa</li><li>Configure timer para 25min</li><li>Trabalhe focado até tocar</li><li>Pausa de 5min</li><li>Repita 4x, depois pausa longa (30min)</li></ol><h3>📱 Apps Recomendados</h3><ul><li><b>Focus Keeper</b> (iOS)</li><li><b>PomoDone</b> (multiplataforma)</li><li><b>Forest</b> (gamificação)</li></ul><h2>🎯 Matriz de Eisenhower</h2><table><tr><th>Urgente</th><th>Não Urgente</th></tr><tr><td><b>Importante</b></td><td>⚡ Fazer Agora</td><td>📅 Agendar</td></tr><tr><td><b>Não Importante</b></td><td>👥 Delegar</td><td>🗑️ Eliminar</td></tr></table><h2>📝 Regras Gerais</h2><ul><li><b>Regra dos 2 minutos</b>: Se leva menos de 2min, faça agora</li><li><b>Time blocking</b>: Reserve blocos de tempo específicos</li><li><b>Single tasking</b>: Uma coisa de cada vez</li><li><b>Digital detox</b>: Silencie notificações durante trabalho focado</li></ul><h3>🔋 <b>Energia ao longo do dia</b></h3><ul><li><b>Manhã</b>: Tarefas mais complexas</li><li><b>Tarde</b>: Reuniões e comunicação</li><li><b>Final do dia</b>: Tarefas administrativas</li></ul><p><i>&quot;A produtividade não é sobre ser ocupado, é sobre ser efetivo&quot;</i></p>",
+		"tags": ["produtividade", "técnicas", "pomodoro", "organização"],
+		"ctime": "2026-02-06T09:15:20.345Z",
+		"mtime": "2026-02-13T12:10:33.678Z"
+	},
+	{
+		"id": "01936b7f-9i9j-71ak-gl33-dk9a9k9l8m7n",
+		"title": "Comandos Git Essenciais",
+		"content": "<h1>Git Commands Cheat Sheet</h1><h2>🔄 Workflow Básico</h2><pre><code></code></pre><h1>Inicializar repositório</h1><p>git init</p><p>git remote add origin &lt;url&gt;</p><h1>Clonar repositório</h1><p>git clone &lt;url&gt;</p><p>cd &lt;project&gt;</p><h1>Status e informações</h1><p>git status</p><p>git log --oneline</p><p>git diff</p><pre><code></code></pre><h2>🌿 Branches</h2><pre><code></code></pre><h1>Criar e trocar para nova branch</h1><p>git checkout -b feature/nova-funcionalidade</p><h1>Listar branches</h1><p>git branch -a</p><h1>Trocar de branch</h1><p>git checkout main</p><h1>Merge</h1><p>git merge feature/nova-funcionalidade</p><h1>Deletar branch</h1><p>git branch -d feature/nova-funcionalidade</p><pre><code></code></pre><h2>💾 Commits e Push</h2><pre><code></code></pre><h1>Adicionar arquivos</h1><p>git add .</p><p>git add arquivo.js</p><h1>Commit</h1><p>git commit -m &quot;Add: nova funcionalidade&quot;</p><p>git commit --amend  # editar último commit</p><h1>Push</h1><p>git push origin main</p><p>git push -u origin feature/branch  # primeira vez</p><pre><code></code></pre><h2>🔧 Comandos Avançados</h2><pre><code></code></pre><h1>Desfazer changes</h1><p>git checkout -- arquivo.js</p><p>git reset HEAD arquivo.js</p><h1>Stash (guardar mudanças temporariamente)</h1><p>git stash</p><p>git stash pop</p><p>git stash list</p><h1>Rebase interativo</h1><p>git rebase -i HEAD~3</p><h1>Cherry-pick</h1><p>git cherry-pick &lt;commit-hash&gt;</p><pre><code></code></pre><h2>🚨 <b>Emergências</b></h2><pre><code></code></pre><h1>Voltar para commit específico</h1><p>git reset --hard &lt;commit-hash&gt;</p><h1>Forçar push (cuidado!)</h1><p>git push --force-with-lease</p><pre><code></code></pre>",
+		"tags": ["git", "comandos", "versionamento", "desenvolvimento"],
+		"ctime": "2026-02-05T16:20:45.567Z"
+	}
+]

@@ -46,7 +46,7 @@ export default function ScreenContainer({
 			backgroundColor: theme.colors.background,
 		},
 		content: {
-			flex: 1,
+			flexGrow: 1,
 			justifyContent: centered ? 'center' : 'flex-start',
 			alignItems: centered ? 'center' : 'stretch',
 			paddingHorizontal: noPadding ? 0 : SCREEN_HORIZONTAL_PADDING,
