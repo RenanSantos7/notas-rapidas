@@ -19,12 +19,11 @@ export default function EditNote() {
 
 	const [title, setTitle] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
-	const [content, setContent] = useState('');
 
-	function handleSave() {
+	function handleSave(text: string) {
 		createNote({
 			title,
-			content,
+			content: text,
 			tags,
 		});
 		navigation.navigate('Home');
@@ -47,19 +46,7 @@ export default function EditNote() {
 				}
 			/>
 
-			<TextEditor />
-
-			<FAB
-				icon='content-save'
-				variant='primary'
-				onPress={handleSave}
-				style={{
-					position: 'absolute',
-					margin: 16,
-					right: 20,
-					bottom: 40,
-				}}
-			/>
+			<TextEditor onSave={handleSave} />
 		</ScreenContainer>
 	);
 }

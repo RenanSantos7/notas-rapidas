@@ -11,8 +11,13 @@ import {
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
 import Toolbar from './toolbar';
+import convertHtmlToMd from '@/utils/htmlToMd';
 
-export default function TextEditor() {
+interface TextEditorProps {
+	onSave: (text: string) => void;
+}
+
+export default function TextEditor(props: TextEditorProps) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
@@ -22,7 +27,8 @@ export default function TextEditor() {
 
 	async function handleSave() {
 		const html = await editorRef.current.getHTML();
-		console.log(html);
+		const markdown = convertHtmlToMd(html);
+		props.onSave(markdown);
 	}
 
 	return (
