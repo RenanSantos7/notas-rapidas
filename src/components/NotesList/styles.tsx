@@ -12,6 +12,11 @@ export default function useStyles(theme: ThemeProps) {
 			alignContent: 'center',
 			justifyContent: 'center',
 		},
+		voidListMessage: {
+			textAlign: 'center',
+			color: theme.colors.primary,
+			fontSize: theme.sizes.text.xl,
+		},
 		card: {
 			paddingTop: 15,
 			paddingBottom: 20,

@@ -10,9 +10,10 @@ export default function useStyles(theme: ThemeProps) {
 		},
 		input: {
 			flexGrow: 1,
-			fontSize: 20,
+			fontSize: 16,
 			paddingTop: 20,
 			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
+			lineHeight: 28,
 		},
 		toolbar: {
 			flexDirection: 'row',

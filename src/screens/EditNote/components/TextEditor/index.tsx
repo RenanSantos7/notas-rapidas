@@ -1,17 +1,18 @@
-import { useState, useRef, Dispatch, SetStateAction } from 'react';
+import { useState, useRef } from 'react';
 
 import { View, TextInput, TextInputSelectionChangeEvent } from 'react-native';
 
+import { Divider } from 'react-native-paper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
-import convertHtmlToMd from '@/utils/htmlToMd';
 import Toolbar from './toolbar';
-import { Divider } from 'react-native-paper';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
 interface TextEditorProps {
 	value: string;
 	onChange: (text: string) => void;
+	onSave: () => void;
 }
 
 interface SelecionProps {
@@ -35,8 +36,9 @@ export default function TextEditor(props: TextEditorProps) {
 	}
 
 	function wrapSelection(prefix: string, suffix: string = prefix) {
-		const { start, end } = selection;
-
+		const start = selection?.start ?? null;
+		const end = selection?.end ?? null;
+		if (!props.value) return;
 		if (start === null || end === null) return;
 
 		const before = props.value.slice(0, start);
@@ -45,35 +47,101 @@ export default function TextEditor(props: TextEditorProps) {
 
 		const newText = `${before}${prefix}${selected}${suffix}${after}`;
 		const cursorPos =
-			start + prefix.length + selected.length + suffix.length;
+			start === end
+				? start + prefix.length
+				: start + prefix.length + selected.length + suffix.length;
 
 		props.onChange(newText);
 		setSelection({ start: cursorPos, end: cursorPos });
 	}
 
-	function toggleHeading(level: 1 | 2 | 3 | 4 | 5 | 6 = 1): void {
-		const { start } = selection;
+	function wrapSelectionBlock(prefix: string, suffix: string = prefix) {
+		if (!props.value) return;
+		const start = selection?.start ?? null;
+		const end = selection?.end ?? null;
+		if (start === null || end === null) return;
+
 		const text = props.value;
 
 		const lineStart = text.lastIndexOf('\n', start - 1) + 1;
+		const nextLineIndex = text.indexOf('\n', end);
+		const lineEnd = nextLineIndex === -1 ? text.length : nextLineIndex;
+
 		const before = text.slice(0, lineStart);
-		const line = text.slice(lineStart, start).trim();
+		const blockContent = text.slice(lineStart, lineEnd);
+		const after = text.slice(lineEnd);
+
+		const newBlock = `${prefix}\n${blockContent}\n${suffix}`;
+		const newText = `${before}${newBlock}${after}`;
+
+		props.onChange(newText);
+
+		const newCursorPos = lineStart + newBlock.length;
+		setSelection({ start: newCursorPos, end: newCursorPos });
+	}
+
+	function handleList(prefix: string | 0) {
+		if (!props.value) return;
+		const start = selection?.start ?? null;
+		const end = selection?.end ?? null;
+		if (start === null || end === null) return;
+
+		const text = props.value;
+
+		const startIndex = text.lastIndexOf('\n', start - 1) + 1;
+		const nextLineIndex = text.indexOf('\n', end);
+		const endIndex = nextLineIndex === -1 ? text.length : nextLineIndex;
+
+		const before = text.slice(0, startIndex);
+		const selectedBlock = text.slice(startIndex, endIndex);
+		const after = text.slice(endIndex);
+
+		let lines = selectedBlock.split('\n');
+		const prefixWithSpace = `${prefix} `;
+
+		const allHavePrefix = lines.every((line) => line.startsWith(prefixWithSpace));
+
+		if (allHavePrefix) {
+			lines = lines.map((line) => line.slice(prefixWithSpace.length));
+		} else {
+			lines = lines.map((line) =>
+				line.startsWith(prefixWithSpace) ? line : `${prefixWithSpace}${line}`,
+			);
+		}
+
+		const newBlock = lines.join('\n');
+		const newText = `${before}${newBlock}${after}`;
+
+		props.onChange(newText);
+
+		const newCursorPos = startIndex + newBlock.length;
+		setSelection({ start: newCursorPos, end: newCursorPos });
+	}
+
+	function insertBeforeLine(prefix: string | 0): void {
+		if (!props.value) return;
+		const start = selection?.start || null;
+		const end = selection?.end || null;
+		if (start === null || end === null) return;
+
+		const text = props.value;
+		const blockStart = text.lastIndexOf('\n', start - 1) + 1;
+		const before = text.slice(0, blockStart);
+		const lines = text.slice(blockStart, start).trim();
 		const after = text.slice(start);
 
-		const prefix = line.startsWith('#'.repeat(level) + ' ')
-			? ''
-			: '#'.repeat(level) + ' ';
-		const newLine = `${prefix}${line}`;
+		prefix = lines.startsWith(prefix + ' ') ? '' : prefix + ' ';
+		const newLine = `${prefix}${lines}`;
 		const newText = `${before}${newLine}${after}`;
 
 		props.onChange(newText);
 
-		const newCursor = lineStart + newLine.length;
+		const newCursor = blockStart + newLine.length;
 		setSelection({ start: newCursor, end: newCursor });
 	}
 
 	return (
-		<View style={styles.container}>
+		<KeyboardAwareScrollView contentContainerStyle={styles.container}>
 			<Divider />
 			<TextInput
 				style={styles.input}
@@ -88,15 +156,28 @@ export default function TextEditor(props: TextEditorProps) {
 				selectTextOnFocus={false}
 				spellCheck={false}
 				onSelectionChange={handleSelectionChange}
+				submitBehavior='newline' // evitar teclado fechar quando perde o foco
 			/>
 			<Toolbar
 				actions={{
 					bold: () => wrapSelection('**'),
 					italic: () => wrapSelection('*'),
-					h1: () => wrapSelection('# ', ''),
-					h2: () => wrapSelection('## ', '\n'),
+					inlineCode: () => wrapSelection('`'),
+					codeBlock: () => wrapSelectionBlock('```'),
+					mathBlock: () => wrapSelectionBlock('$$'),
+					orderedlist: () => {},
+					blockquote: () => handleList('>'),
+					unorderedlist: () => handleList('-'),
+					chekboxlist: () => handleList('- [ ]'),
+					h1: () => insertBeforeLine('#'.repeat(1)),
+					h2: () => insertBeforeLine('#'.repeat(2)),
+					h3: () => insertBeforeLine('#'.repeat(3)),
+					h4: () => insertBeforeLine('#'.repeat(4)),
+					h5: () => insertBeforeLine('#'.repeat(5)),
+					h6: () => insertBeforeLine('#'.repeat(6)),
+					save: props.onSave,
 				}}
 			/>
-		</View>
+		</KeyboardAwareScrollView>
 	);
 }

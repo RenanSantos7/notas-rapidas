@@ -4,13 +4,31 @@ import {
 	IconButton,
 	Menu,
 	Surface,
-	ToggleButton,
 } from 'react-native-paper';
 import useStyles from './styles';
 import { ComponentProps, useState } from 'react';
 
+type ToolbarAction = (args?: any) => void
+
 interface ToolbarProps {
-	actions: { [action: string]: (args?: any) => void };
+	actions: {
+		bold?: ToolbarAction;
+		italic?: ToolbarAction;
+		inlineCode?: ToolbarAction;
+		codeBlock?: ToolbarAction;
+		mathBlock?: ToolbarAction;
+		h1?: ToolbarAction;
+		h2?: ToolbarAction;
+		h3?: ToolbarAction;
+		h4?: ToolbarAction;
+		h5?: ToolbarAction;
+		h6?: ToolbarAction;
+		blockquote?: ToolbarAction;
+		unorderedlist?: ToolbarAction;
+		orderedlist?: ToolbarAction;
+		chekboxlist?: ToolbarAction;
+		save?: ToolbarAction;
+	};
 }
 
 function Button(
@@ -114,6 +132,7 @@ export default function Toolbar({ actions }: ToolbarProps) {
 					/>
 				}
 				mode='flat'
+				anchorPosition='bottom'
 				onDismiss={() => setListMenu(false)}
 			>
 				<Menu.Item
@@ -138,7 +157,7 @@ export default function Toolbar({ actions }: ToolbarProps) {
 						actions.chekboxlist()}}
 				/>
 			</Menu>
-			<Button icon='content-save' onPress={() => actions.save()} />
+			<Button icon='content-save' onPress={actions.save} />
 		</Surface>
 	);
 }

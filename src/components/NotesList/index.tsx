@@ -12,27 +12,27 @@ interface NotesListProps {
 	voidMessage?: string | { whereShow: boolean; message: string };
 }
 
-export default function NotesList({ data, voidMessage }: NotesListProps) {
+function EmptyList({ message }: { message: NotesListProps['voidMessage'] }) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
-
 	const showVoidMessage =
-		(typeof voidMessage === 'string' && voidMessage != '') ||
-		(typeof voidMessage === 'object' &&
-			voidMessage?.whereShow &&
-			voidMessage?.message);
+		(typeof message === 'string' && message != '') ||
+		(typeof message === 'object' && message?.whereShow && message?.message);
 
 	if (showVoidMessage) {
 		return (
 			<View style={styles.voidListContainer}>
-				<Text>
-					{typeof voidMessage == 'string'
-						? voidMessage
-						: voidMessage.message}
+				<Text style={styles.voidListMessage}>
+					{typeof message == 'string' ? message : message.message}
 				</Text>
 			</View>
 		);
 	}
+}
+
+export default function NotesList({ data, voidMessage }: NotesListProps) {
+	const { theme } = useTheme();
+	const styles = useStyles(theme);
 
 	return (
 		<FlatList
@@ -42,6 +42,7 @@ export default function NotesList({ data, voidMessage }: NotesListProps) {
 				<NotesListItem note={item} />
 			)}
 			ListFooterComponent={() => <View style={{ height: 80 }} />}
+			ListEmptyComponent={() => <EmptyList message={voidMessage} />}
 		/>
 	);
 }

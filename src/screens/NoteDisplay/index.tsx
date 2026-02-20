@@ -24,25 +24,19 @@ export default function NoteDisplay() {
 	const styles = useStyles(theme);
 
 	return (
-		<ScreenContainer contentStyle={{ paddingBottom: 0 }}>
+		<ScreenContainer
+			contentStyle={{ paddingBottom: 0 }}
+			fabOptions={{
+				icon: 'pencil',
+				action: () => navigation.navigate('EditNote', { note })
+			}}
+		>
 			<Header title={note.title} canGoBack={navigation.canGoBack()} />
 			<View style={styles.metadata}>
 				<Text>{formatDate(note.ctime || note.mtime)}</Text>
 			</View>
 
 			<Content text={note.content} />
-
-			<FAB
-				icon='pencil'
-				variant='primary'
-				onPress={() => navigation.navigate('EditNote', { note })}
-				style={{
-					position: 'absolute',
-					margin: 16,
-					right: 20,
-					bottom: 20,
-				}}
-			/>
 		</ScreenContainer>
 	);
 }

@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
+import "react-native-get-random-values";
 import { v7 as uuidv7 } from 'uuid';
 
 import { CrudeNoteProps, NoteProps } from '@/types';
@@ -17,7 +18,11 @@ interface IDataContext {
 const DataContext = createContext<IDataContext>(undefined);
 
 export default function DataProvider({ children }: { children: ReactNode }) {
-	const [notes, setNotes] = usePersistentState<NoteProps[]>('@notes');
+	const [notes, setNotes] = usePersistentState<NoteProps[]>('@notes', []);
+
+	useEffect(() => {
+		console.log(notes);
+	},[notes]);
 
 	function createNote(data: CrudeNoteProps) {
 		const newNote = {

@@ -2,11 +2,12 @@ import { ReactNode } from 'react';
 
 import { StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/contexts/themeContext';
 import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
+import { FAB } from 'react-native-paper';
+import { IconName } from '@/types/theme';
 
 interface ScreenContainerProps {
 	children: ReactNode;
@@ -14,6 +15,10 @@ interface ScreenContainerProps {
 	centered?: boolean;
 	contentStyle?: ViewStyle;
 	noPadding?: boolean;
+	fabOptions?: {
+		icon: IconName;
+		action: () => void;
+	};
 }
 
 /**
@@ -34,6 +39,7 @@ export default function ScreenContainer({
 	children,
 	contentStyle,
 	noPadding = false,
+	fabOptions,
 }: ScreenContainerProps) {
 	const { theme, isDarkTheme } = useTheme();
 	const insets = useSafeAreaInsets();
@@ -62,6 +68,20 @@ export default function ScreenContainer({
 				translucent
 			/>
 			<View style={[styles.content, contentStyle]}>{children}</View>
+
+			{(fabOptions?.icon && fabOptions?.action) ? (
+				<FAB
+					icon={fabOptions.icon}
+					variant='primary'
+					onPress={fabOptions.action}
+					style={{
+						position: 'absolute',
+						margin: 16,
+						right: 20,
+						bottom: 64,
+					}}
+				/>
+			) : null}
 		</View>
 	);
 }

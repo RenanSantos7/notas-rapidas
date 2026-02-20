@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, useRoute, RouteProp } from '@react-navigation/native';
 
 import ScreenContainer from '@/components/ScreenContainer';
-import { FAB, TextInput } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import { HomeStackParams } from '@/routes/home.routes';
 import NoteTitle from './components/NoteTitle';
 import useStyles from './styles';
@@ -13,17 +13,19 @@ import TextEditor from './components/TextEditor';
 
 export default function EditNote() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
+	const { params } = useRoute<RouteProp<HomeStackParams, 'EditNote'>>()
 	const { createNote } = useDataContext();
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
-	const [title, setTitle] = useState('');
-	const [tags, setTags] = useState<string[]>([]);
+	const [title, setTitle] = useState(() => params?.note.title ?? '');
+	const [tags, setTags] = useState<string[]>(() => params?.note.tags ?? []);
+	const [content, setContent] = useState(() => params?.note.content ?? '');
 
-	function handleSave(text: string) {
+	function handleSave() {
 		createNote({
 			title,
-			content: text,
+			content,
 			tags,
 		});
 		navigation.navigate('Home');
@@ -44,9 +46,14 @@ export default function EditNote() {
 				right={
 					<TextInput.Icon icon='tag' color={theme.colors.backdrop} />
 				}
+				autoCapitalize='none'
 			/>
 
-			<TextEditor onSave={handleSave} />
+			<TextEditor
+				value={content}
+				onChange={setContent}
+				onSave={handleSave}
+			/>
 		</ScreenContainer>
 	);
 }
