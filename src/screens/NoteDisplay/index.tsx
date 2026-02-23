@@ -16,8 +16,6 @@ import ScreenContainer from '@/components/ScreenContainer';
 import formatDate from '@/utils/formatDate';
 import useStyles from './styles';
 
-import { mock } from './data';
-
 export default function NoteDisplay() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
 	const { params } = useRoute<RouteProp<HomeStackParams, 'NoteDisplay'>>();
@@ -26,28 +24,19 @@ export default function NoteDisplay() {
 	const styles = useStyles(theme);
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer
+			contentStyle={{ paddingBottom: 0 }}
+			fabOptions={{
+				icon: 'pencil',
+				action: () => navigation.navigate('EditNote', { note })
+			}}
+		>
 			<Header title={note.title} canGoBack={navigation.canGoBack()} />
-			<View style={styles.container}>
-				<View style={styles.metadata}>
-					<Text>{formatDate(note.ctime || note.mtime)}</Text>
-				</View>
-
-				<Content text={note.content} />
-				{/* <Content text={mock} /> */}
+			<View style={styles.metadata}>
+				<Text>{formatDate(note.ctime || note.mtime)}</Text>
 			</View>
 
-			<FAB
-				icon='pencil'
-				variant='primary'
-				onPress={() => navigation.navigate('EditNote', { note })}
-				style={{
-					position: 'absolute',
-					margin: 16,
-					right: 20,
-					bottom: 20,
-				}}
-			/>
+			<Content text={note.content} />
 		</ScreenContainer>
 	);
 }

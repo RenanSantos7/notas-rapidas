@@ -1,10 +1,9 @@
 import { View } from 'react-native';
 
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-
-import { HomeStackParams } from '@/routes/home.routes';
-import { NoteProps } from '@/types';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Surface, Text, TouchableRipple } from 'react-native-paper';
+
+import { NoteProps } from '@/types';
 import { useTheme } from '@/contexts/themeContext';
 import formatDate from '@/utils/formatDate';
 import useStyles from './styles';
@@ -17,14 +16,19 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
-	const { navigate } = useNavigation<NavigationProp<HomeStackParams>>();
+	const { navigate } = useNavigation();
 
 	return (
 		<TouchableRipple
-			onPress={() => navigate('NoteDisplay', { note })}
+			onPress={() =>
+				navigate('HomeStack', {
+					screen: 'NoteDisplay',
+					params: { note },
+				})
+			}
 			rippleColor='rgba(0, 0, 0, .32)'
 		>
-			<Surface style={styles.container} mode='flat'>
+			<Surface style={styles.card} mode='flat'>
 				<View>
 					<Text variant='titleMedium'>{note.title}</Text>
 					<Text variant='labelSmall'>

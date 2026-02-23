@@ -1,24 +1,26 @@
 import { useState } from 'react';
 
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, useRoute, RouteProp } from '@react-navigation/native';
 
 import ScreenContainer from '@/components/ScreenContainer';
-import { FAB, TextInput } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
 import { HomeStackParams } from '@/routes/home.routes';
 import NoteTitle from './components/NoteTitle';
 import useStyles from './styles';
 import { useTheme } from '@/contexts/themeContext';
 import { useDataContext } from '@/contexts/dataContext';
+import TextEditor from './components/TextEditor';
 
 export default function EditNote() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
+	const { params } = useRoute<RouteProp<HomeStackParams, 'EditNote'>>()
 	const { createNote } = useDataContext();
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
-	const [title, setTitle] = useState('');
-	const [tags, setTags] = useState<string[]>([]);
-	const [content, setContent] = useState('');
+	const [title, setTitle] = useState(() => params?.note.title ?? '');
+	const [tags, setTags] = useState<string[]>(() => params?.note.tags ?? []);
+	const [content, setContent] = useState(() => params?.note.content ?? '');
 
 	function handleSave() {
 		createNote({
@@ -30,7 +32,7 @@ export default function EditNote() {
 	}
 
 	return (
-		<ScreenContainer>
+		<ScreenContainer noPadding contentStyle={styles.container}>
 			<NoteTitle title={title} setTitle={setTitle} />
 
 			<TextInput
@@ -44,18 +46,13 @@ export default function EditNote() {
 				right={
 					<TextInput.Icon icon='tag' color={theme.colors.backdrop} />
 				}
+				autoCapitalize='none'
 			/>
 
-			<FAB
-				icon='content-save'
-				variant='primary'
-				onPress={handleSave}
-				style={{
-					position: 'absolute',
-					margin: 16,
-					right: 20,
-					bottom: 40,
-				}}
+			<TextEditor
+				value={content}
+				onChange={setContent}
+				onSave={handleSave}
 			/>
 		</ScreenContainer>
 	);

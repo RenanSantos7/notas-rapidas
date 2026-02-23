@@ -6,7 +6,6 @@ export default function useStyles(theme: ThemeProps) {
 	return StyleSheet.create({
 		container: {
 			flex: 1,
-			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
 		},
 		metadata: {
 			paddingBottom: 8,

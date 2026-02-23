@@ -6,12 +6,11 @@ import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 export default function useStyles(theme: ThemeProps) {
 	return StyleSheet.create({
 		container: {
-			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
-			paddingVertical: 16,
+			marginHorizontal: SCREEN_HORIZONTAL_PADDING,
 		},
 		input: {
-            fontSize: 32,
-            fontWeight: 400,
+			fontSize: 32,
+			fontWeight: 400,
 		},
 	});
 }

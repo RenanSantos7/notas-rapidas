@@ -2,10 +2,12 @@ import { ReactNode } from 'react';
 
 import { StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/contexts/themeContext';
+import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
+import { FAB } from 'react-native-paper';
+import { IconName } from '@/types/theme';
 
 interface ScreenContainerProps {
 	children: ReactNode;
@@ -13,6 +15,10 @@ interface ScreenContainerProps {
 	centered?: boolean;
 	contentStyle?: ViewStyle;
 	noPadding?: boolean;
+	fabOptions?: {
+		icon: IconName;
+		action: () => void;
+	};
 }
 
 /**
@@ -32,7 +38,8 @@ export default function ScreenContainer({
 	centered = false,
 	children,
 	contentStyle,
-	noPadding,
+	noPadding = false,
+	fabOptions,
 }: ScreenContainerProps) {
 	const { theme, isDarkTheme } = useTheme();
 	const insets = useSafeAreaInsets();
@@ -48,24 +55,33 @@ export default function ScreenContainer({
 			flexGrow: 1,
 			justifyContent: centered ? 'center' : 'flex-start',
 			alignItems: centered ? 'center' : 'stretch',
-			paddingBottom: insets.bottom + theme.sizes.spacing.md,
+			paddingHorizontal: noPadding ? 0 : SCREEN_HORIZONTAL_PADDING,
+			paddingBottom: insets.bottom,
 		},
 	});
 
 	return (
 		<View style={styles.container}>
-			<CustomStatusBar isDarkMode={isDarkTheme} />
+			<StatusBar
+				barStyle={isDarkTheme ? 'light-content' : 'dark-content'}
+				backgroundColor='transparent'
+				translucent
+			/>
 			<View style={[styles.content, contentStyle]}>{children}</View>
-		</View>
-	);
-}
 
-function CustomStatusBar({ isDarkMode }: { isDarkMode: boolean }) {
-	return (
-		<StatusBar
-			barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-			backgroundColor='transparent'
-			translucent
-		/>
+			{(fabOptions?.icon && fabOptions?.action) ? (
+				<FAB
+					icon={fabOptions.icon}
+					variant='primary'
+					onPress={fabOptions.action}
+					style={{
+						position: 'absolute',
+						margin: 16,
+						right: 20,
+						bottom: 64,
+					}}
+				/>
+			) : null}
+		</View>
 	);
 }
