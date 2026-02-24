@@ -4,6 +4,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import DataProvider from '@/contexts/dataContext';
 import Routes from '@/routes/app.routes';
 import ThemeProvider from '@/contexts/themeContext';
+import AlertProvider from '@/contexts/alertContext';
 
 export default function App() {
 	return (
@@ -11,7 +12,9 @@ export default function App() {
 			<KeyboardProvider>
 				<DataProvider>
 					<ThemeProvider>
-						<Routes />
+						<AlertProvider>
+							<Routes />
+						</AlertProvider>
 					</ThemeProvider>
 				</DataProvider>
 			</KeyboardProvider>

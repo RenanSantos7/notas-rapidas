@@ -27,7 +27,7 @@
 	// }
 	"Chamada dos estilos": {
 		"scope": "typescriptreact",
-		"prefix": "styles",
+		"prefix": "usestyles",
 		"body": [
 			"const { theme } = useTheme();",
 			"const styles = useStyles(theme);"

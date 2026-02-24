@@ -1,9 +1,10 @@
 import { View } from 'react-native';
 
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { Surface, Text, TouchableRipple } from 'react-native-paper';
 
 import { NoteProps } from '@/types';
+import { useAlertContext } from '@/contexts/alertContext';
 import { useTheme } from '@/contexts/themeContext';
 import formatDate from '@/utils/formatDate';
 import useStyles from './styles';
@@ -16,6 +17,8 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
+	const { useModal } = useAlertContext();
+
 	const { navigate } = useNavigation();
 
 	return (
@@ -26,6 +29,9 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 					params: { note },
 				})
 			}
+			onLongPress={() => {
+				useModal(note);
+			}}
 			rippleColor='rgba(0, 0, 0, .32)'
 		>
 			<Surface style={styles.card} mode='flat'>

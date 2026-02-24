@@ -7,7 +7,7 @@ import {
 	RouteProp,
 } from '@react-navigation/native';
 
-import { FAB, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { HomeStackParams } from '@/routes/home.routes';
 import { useTheme } from '@/contexts/themeContext';
 import Content from './components/Content';
