@@ -14,6 +14,7 @@ export default function useStyles(theme: ThemeProps) {
 			flexDirection: 'row',
 			gap: 10,
 			alignItems: 'center',
+			flexGrow: 1, 
 		},
 	});
 }

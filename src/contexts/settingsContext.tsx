@@ -1,14 +1,13 @@
+import { HomeLayout } from '@/types';
 import {
 	createContext,
-	Dispatch,
 	PropsWithChildren,
-	SetStateAction,
 	useContext,
 	useState,
 } from 'react';
 
 interface ISettings {
-	homeLayout: 'list' | 'grid';
+	homeLayout: HomeLayout;
 	toggleHomeLayout: () => void;
 }
 

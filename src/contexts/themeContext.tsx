@@ -17,7 +17,7 @@ const ThemeContext = createContext<IThemeContext>(undefined);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
 	const isDarkTheme = useColorScheme() == 'dark';
-
+	
 	const { theme: materialTheme } = useMaterial3Theme();
 
 	const theme = useMemo(

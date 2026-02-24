@@ -11,13 +11,13 @@ import useStyles from './styles';
 
 interface HeaderProps {
 	title: string;
-	rightComponent?: ReactNode;
+	right?: ReactNode;
 	canGoBack?: boolean;
 }
 
 export default function Header({
 	title,
-	rightComponent,
+	right,
 	canGoBack = false,
 }: HeaderProps) {
 	const { goBack } = useNavigation();
@@ -39,7 +39,7 @@ export default function Header({
 				) : null}
 				<Text variant='headlineLarge'>{title}</Text>
 			</View>
-			{rightComponent ? rightComponent : null}
+			{right ? right : null}
 		</View>
 	);
 }

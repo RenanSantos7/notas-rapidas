@@ -1,10 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
-import DataProvider from '@/contexts/dataContext';
+import {
+	AlertProvider,
+	DataProvider,
+	ThemeProvider,
+	SettingsProvider,
+} from '@/contexts';
 import Routes from '@/routes/app.routes';
-import ThemeProvider from '@/contexts/themeContext';
-import AlertProvider from '@/contexts/alertContext';
 
 export default function App() {
 	return (
@@ -12,9 +15,11 @@ export default function App() {
 			<KeyboardProvider>
 				<DataProvider>
 					<ThemeProvider>
-						<AlertProvider>
-							<Routes />
-						</AlertProvider>
+						<SettingsProvider>
+							<AlertProvider>
+								<Routes />
+							</AlertProvider>
+						</SettingsProvider>
 					</ThemeProvider>
 				</DataProvider>
 			</KeyboardProvider>

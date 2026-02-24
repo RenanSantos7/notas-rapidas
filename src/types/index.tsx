@@ -17,3 +17,5 @@ export type NoteProps = CrudeNoteProps & {
 	readonly ctime: string; // ISO format date
 	mtime?: string; // ISO format date
 };
+
+export type HomeLayout = 'grid' | 'list'
