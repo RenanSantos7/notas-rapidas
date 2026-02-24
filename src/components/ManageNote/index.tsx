@@ -40,6 +40,11 @@ export default function ManageNote({ note, ...props }: ManageNoteProps) {
 		}
 	}
 
+	function handleDelete() {
+		deleteNote(note.id);
+		props.dismiss();
+	}
+
 	return (
 		<Modal
 			visible={props.visible}
@@ -110,7 +115,7 @@ export default function ManageNote({ note, ...props }: ManageNoteProps) {
 
 						<Button
 							mode='contained-tonal'
-							onPress={() => deleteNote(note.id)}
+							onPress={handleDelete}
 						>
 							Sim
 						</Button>

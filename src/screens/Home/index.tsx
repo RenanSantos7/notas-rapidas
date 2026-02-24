@@ -21,7 +21,10 @@ export default function Home() {
 				action: () => navigation.navigate('EditNote'),
 			}}
 		>
-			<Header title='Notas' right={<ToggleHomeLayout />} />
+			<Header
+				title='Notas'
+				right={<ToggleHomeLayout disabled={!notes.length} />}
+			/>
 
 			{homeLayout === 'list' ? (
 				<NotesList data={notes} voidMessage='Sem notas ainda.' />

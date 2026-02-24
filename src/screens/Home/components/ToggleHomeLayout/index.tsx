@@ -10,7 +10,7 @@ import { Button } from 'react-native-paper';
 import { useSettingsContext } from '@/contexts/settingsContext';
 
 interface ToggleHomeLayoutProps {
-    
+    disabled: boolean;
 };
 
 export default function ToggleHomeLayout(props: ToggleHomeLayoutProps) {
@@ -27,11 +27,11 @@ export default function ToggleHomeLayout(props: ToggleHomeLayoutProps) {
     }
 
     return (
-        <Button onPress={onCheck}>
+        <Button onPress={onCheck} disabled={props.disabled}>
             <MaterialIcons
                 name={checked ? 'view-grid' : 'view-list'}
                 size={24}
-                color={theme.colors.onBackground}
+                color={!props.disabled ? theme.colors.onBackground : theme.colors.backdrop}
             />
         </Button>
     );

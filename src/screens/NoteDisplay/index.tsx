@@ -15,6 +15,7 @@ import Header from '@/components/Header';
 import ScreenContainer from '@/components/ScreenContainer';
 import formatDate from '@/utils/formatDate';
 import useStyles from './styles';
+import TagContainer from './components/TagContainer';
 
 export default function NoteDisplay() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
@@ -34,6 +35,7 @@ export default function NoteDisplay() {
 			<Header title={note.title} canGoBack={navigation.canGoBack()} />
 			<View style={styles.metadata}>
 				<Text>{formatDate(note.ctime || note.mtime)}</Text>
+				<TagContainer tags={note.tags} />
 			</View>
 
 			<Content text={note.content} />
