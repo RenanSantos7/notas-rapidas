@@ -5,13 +5,22 @@ import { ThemeProps } from '@/types/theme';
 export default function useStyles(theme: ThemeProps) {
     return StyleSheet.create({
         container: {
-            marginHorizontal: theme.sizes.spacing.xl,
+            // marginHorizontal: theme.sizes.spacing.xl,
+            alignSelf: 'center',
+            width: 375,
             borderRadius: theme.sizes.borderRadius.xl,
             backgroundColor: theme.colors.background,
-            overflow: 'hidden'
+            overflow: 'hidden',
+        },
+        wrapper: {
+           
+        },
+        content: {
+            width: 375,
+            padding: theme.sizes.spacing.md,
+            gap: theme.sizes.spacing.lg,
         },
         listItem: {
-            paddingHorizontal: theme.sizes.spacing.md,
             gap: theme.sizes.spacing.lg,
         },
         listItemTxt: {
@@ -19,6 +28,10 @@ export default function useStyles(theme: ThemeProps) {
         },
         danger: {
             color: theme.colors.error,
+        },
+        modalFooter: {
+            flexDirection: 'row-reverse',
+            gap: theme.sizes.spacing.lg,
         }
     });
 }
