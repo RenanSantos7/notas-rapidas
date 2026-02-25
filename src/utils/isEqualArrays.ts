@@ -15,8 +15,8 @@
  * isEqualArrays([1, 2, 3], [3, 2, 1], true); // false
  *
  * // Non-strict mode - order doesn't matter
- * isEqualArrays([1, 2, 3], [3, 2, 1], false); // true
- * isEqualArrays([1, 2, 3], [1, 2, 4], false); // false
+ * isEqualArrays([1, 2, 3], [3, 2, 1]); // true
+ * isEqualArrays([1, 2, 3], [1, 2, 4]); // false
  * ```
  */
 export default function isEqualArrays<T>(
@@ -24,11 +24,19 @@ export default function isEqualArrays<T>(
 	b: T[],
 	strictMode: boolean = false,
 ) {
-	if (strictMode) {
-		return a.length === b.length && a.every((v, i) => v === b[i]);
+	if (!Array.isArray(a) || !Array.isArray(b)) {
+		return false;
 	}
 
-	const aSorted = a.toSorted();
-	const bSorted = b.toSorted();
-	return a.length === b.length && aSorted.every((v, i) => v === bSorted[i]);
+	if (a.length !== b.length) {
+		return false;
+	}
+
+	if (strictMode) {
+		return a.every((v, i) => v === b[i]);
+	}
+
+	const aSorted = [...a].sort();
+	const bSorted = [...b].sort();
+	return aSorted.every((v, i) => v === bSorted[i]);
 }

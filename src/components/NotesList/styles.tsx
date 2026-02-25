@@ -8,9 +8,9 @@ export default function useStyles(theme: ThemeProps) {
 			gap: 10,
 		},
 		voidListContainer: {
-			flex: 1,
 			alignContent: 'center',
 			justifyContent: 'center',
+			paddingTop: theme.sizes.spacing.xxl,
 		},
 		voidListMessage: {
 			textAlign: 'center',

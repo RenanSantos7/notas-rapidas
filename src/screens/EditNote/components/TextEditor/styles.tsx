@@ -5,8 +5,12 @@ import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 
 export default function useStyles(theme: ThemeProps) {
 	return StyleSheet.create({
-		container: {
+		wrapper: {
 			flex: 1,
+		},
+		container: {
+			flexGrow: 1,
+			paddingBottom: theme.sizes.spacing.xl,
 		},
 		input: {
 			flexGrow: 1,
@@ -15,6 +19,13 @@ export default function useStyles(theme: ThemeProps) {
 			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
 			lineHeight: 28,
 		},
+		toolbarContainer: {
+			position: 'absolute',
+			left: 0,
+			right: 0,
+			bottom: 0,
+			alignItems: 'center',
+		},
 		toolbar: {
 			flexDirection: 'row',
 			gap: 4,
@@ -22,7 +33,7 @@ export default function useStyles(theme: ThemeProps) {
 			justifyContent: 'center',
 			alignSelf: 'center',
 			paddingHorizontal: theme.sizes.spacing.sm,
-			borderRadius: theme.sizes.borderRadius.xxxl
+			borderRadius: theme.sizes.borderRadius.xxxl,
 		},
 		icon: {
 			borderRadius: 8,

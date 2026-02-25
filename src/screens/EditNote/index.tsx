@@ -1,20 +1,27 @@
 import { useState } from 'react';
 
-import { useNavigation, NavigationProp, useRoute, RouteProp } from '@react-navigation/native';
-
-import ScreenContainer from '@/components/ScreenContainer';
+import {
+	NavigationProp,
+	RouteProp,
+	useNavigation,
+	useRoute,
+} from '@react-navigation/native';
 import { TextInput } from 'react-native-paper';
+
 import { HomeStackParams } from '@/routes/home.routes';
-import NoteTitle from './components/NoteTitle';
-import useStyles from './styles';
 import { useTheme } from '@/contexts/themeContext';
 import { useDataContext } from '@/contexts/dataContext';
+import NoteTitle from './components/NoteTitle';
+import ScreenContainer from '@/components/ScreenContainer';
 import TextEditor from './components/TextEditor';
+import isEmptyObj from '@/utils/isEmptyObj';
+import useStyles from './styles';
+import { NoteProps } from '@/types';
 
 export default function EditNote() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
-	const { params } = useRoute<RouteProp<HomeStackParams, 'EditNote'>>()
-	const { createNote } = useDataContext();
+	const { params } = useRoute<RouteProp<HomeStackParams, 'EditNote'>>();
+	const { createNote, editNote } = useDataContext();
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
@@ -23,11 +30,23 @@ export default function EditNote() {
 	const [content, setContent] = useState(() => params?.note.content ?? '');
 
 	function handleSave() {
-		createNote({
-			title,
-			content,
-			tags,
-		});
+		const isEditing = !isEmptyObj(params?.note);
+
+		if (isEditing) {
+			editNote({
+				...params.note,
+				title,
+				tags,
+				content,
+			});
+		} else {
+			createNote({
+				title,
+				content,
+				tags,
+			});
+		}
+
 		navigation.navigate('Home');
 	}
 

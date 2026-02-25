@@ -109,13 +109,14 @@ export default function ManageNote({ note, ...props }: ManageNoteProps) {
 					<Text>Tem certeza de que deseja excluir?</Text>
 
 					<View style={styles.modalFooter}>
-						<Button mode='text' onPress={props.dismiss}>
+						<Button mode='contained' onPress={props.dismiss}>
 							Não
 						</Button>
 
 						<Button
-							mode='contained-tonal'
+							mode='text'
 							onPress={handleDelete}
+							textColor={theme.colors.error}
 						>
 							Sim
 						</Button>

@@ -1,10 +1,4 @@
-import {
-	createContext,
-	ReactNode,
-	useContext,
-	useEffect,
-	useState,
-} from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
 import 'react-native-get-random-values';
 import { v7 as uuidv7 } from 'uuid';
@@ -12,7 +6,6 @@ import { v7 as uuidv7 } from 'uuid';
 import { CrudeNoteProps, NoteProps } from '@/types';
 import usePersistentState from '@/hooks/usePersistentState';
 import isEqualArrays from '@/utils/isEqualArrays';
-import mockedNotes from './data.json';
 
 interface IDataContext {
 	notes: NoteProps[];
@@ -37,16 +30,16 @@ export default function DataProvider({ children }: { children: ReactNode }) {
 	}
 
 	function editNote(data: NoteProps) {
-		let editedNote = notes.find(note => note.id === data.id);
-		const contentWasModified = editedNote.content != data.content;
-		const tagsWasModified = !isEqualArrays(editedNote.tags, data.tags);
-		const titleWasModified = editedNote.title != data.title;
+		const currentNote = notes.find(note => note.id === data.id);
+		const contentWasModified = currentNote.content != data.content;
+		const tagsWasModified = !isEqualArrays(currentNote.tags, data.tags);
+		const titleWasModified = currentNote.title != data.title;
 		const noteWasModified =
 			titleWasModified || tagsWasModified || contentWasModified;
 
 		if (noteWasModified) {
-			editedNote = {
-				...editedNote,
+			const editedNote = {
+				...currentNote,
 				mtime: new Date().toISOString(),
 				tags: data.tags,
 				content: data.content,

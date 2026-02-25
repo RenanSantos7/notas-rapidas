@@ -3,7 +3,10 @@ import { useState, useRef } from 'react';
 import { View, TextInput, TextInputSelectionChangeEvent } from 'react-native';
 
 import { Divider } from 'react-native-paper';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+import {
+	KeyboardAwareScrollView,
+	KeyboardStickyView,
+} from 'react-native-keyboard-controller';
 
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
@@ -99,13 +102,17 @@ export default function TextEditor(props: TextEditorProps) {
 		let lines = selectedBlock.split('\n');
 		const prefixWithSpace = `${prefix} `;
 
-		const allHavePrefix = lines.every((line) => line.startsWith(prefixWithSpace));
+		const allHavePrefix = lines.every(line =>
+			line.startsWith(prefixWithSpace),
+		);
 
 		if (allHavePrefix) {
-			lines = lines.map((line) => line.slice(prefixWithSpace.length));
+			lines = lines.map(line => line.slice(prefixWithSpace.length));
 		} else {
-			lines = lines.map((line) =>
-				line.startsWith(prefixWithSpace) ? line : `${prefixWithSpace}${line}`,
+			lines = lines.map(line =>
+				line.startsWith(prefixWithSpace)
+					? line
+					: `${prefixWithSpace}${line}`,
 			);
 		}
 
@@ -141,43 +148,49 @@ export default function TextEditor(props: TextEditorProps) {
 	}
 
 	return (
-		<KeyboardAwareScrollView contentContainerStyle={styles.container}>
-			<Divider />
-			<TextInput
-				style={styles.input}
-				textAlignVertical='top'
-				value={props.value}
-				onChangeText={props.onChange}
-				ref={editorRef}
-				multiline
-				autoCorrect={false}
-				autoCapitalize='none'
-				selection={selection}
-				selectTextOnFocus={false}
-				spellCheck={false}
-				onSelectionChange={handleSelectionChange}
-				submitBehavior='newline' // evitar teclado fechar quando perde o foco
-			/>
-			<Toolbar
-				actions={{
-					bold: () => wrapSelection('**'),
-					italic: () => wrapSelection('*'),
-					inlineCode: () => wrapSelection('`'),
-					codeBlock: () => wrapSelectionBlock('```'),
-					mathBlock: () => wrapSelectionBlock('$$'),
-					orderedlist: () => {},
-					blockquote: () => handleList('>'),
-					unorderedlist: () => handleList('-'),
-					chekboxlist: () => handleList('- [ ]'),
-					h1: () => insertBeforeLine('#'.repeat(1)),
-					h2: () => insertBeforeLine('#'.repeat(2)),
-					h3: () => insertBeforeLine('#'.repeat(3)),
-					h4: () => insertBeforeLine('#'.repeat(4)),
-					h5: () => insertBeforeLine('#'.repeat(5)),
-					h6: () => insertBeforeLine('#'.repeat(6)),
-					save: props.onSave,
-				}}
-			/>
-		</KeyboardAwareScrollView>
+		<View style={styles.wrapper}>
+			<KeyboardAwareScrollView
+				contentContainerStyle={styles.container}
+				keyboardShouldPersistTaps='always'
+			>
+				<Divider />
+				<TextInput
+					style={styles.input}
+					textAlignVertical='top'
+					value={props.value}
+					onChangeText={props.onChange}
+					ref={editorRef}
+					multiline
+					autoCorrect={false}
+					autoCapitalize='none'
+					selection={selection}
+					selectTextOnFocus={false}
+					spellCheck={false}
+					onSelectionChange={handleSelectionChange}
+				/>
+			</KeyboardAwareScrollView>
+			<KeyboardStickyView style={styles.toolbarContainer}>
+				<Toolbar
+					actions={{
+						bold: () => wrapSelection('**'),
+						italic: () => wrapSelection('*'),
+						inlineCode: () => wrapSelection('`'),
+						codeBlock: () => wrapSelectionBlock('```'),
+						mathBlock: () => wrapSelectionBlock('$$'),
+						orderedlist: () => {},
+						blockquote: () => handleList('>'),
+						unorderedlist: () => handleList('-'),
+						chekboxlist: () => handleList('- [ ]'),
+						h1: () => insertBeforeLine('#'.repeat(1)),
+						h2: () => insertBeforeLine('#'.repeat(2)),
+						h3: () => insertBeforeLine('#'.repeat(3)),
+						h4: () => insertBeforeLine('#'.repeat(4)),
+						h5: () => insertBeforeLine('#'.repeat(5)),
+						h6: () => insertBeforeLine('#'.repeat(6)),
+						save: props.onSave,
+					}}
+				/>
+			</KeyboardStickyView>
+		</View>
 	);
 }

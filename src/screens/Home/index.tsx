@@ -8,6 +8,7 @@ import NotesList from '@/components/NotesList';
 import ScreenContainer from '@/components/ScreenContainer';
 import ToggleHomeLayout from './components/ToggleHomeLayout';
 import NotesGrid from './components/NotesGrid';
+import { Button } from 'react-native-paper';
 
 export default function Home() {
 	const { notes } = useDataContext();
