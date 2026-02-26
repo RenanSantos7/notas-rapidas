@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 
-import { useColorScheme } from 'react-native';
+import { useColorScheme, useWindowDimensions } from 'react-native';
 
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { useMaterial3Theme } from '@pchmn/expo-material3-theme';
@@ -11,13 +11,19 @@ import { sizes } from '@/styles/sizes';
 interface IThemeContext {
 	theme: ThemeProps;
 	isDarkTheme: boolean;
+	isLandscape: boolean;
+	isLargerScreen: boolean;
+	screenWidth: number;
 }
 
 const ThemeContext = createContext<IThemeContext>(undefined);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
 	const isDarkTheme = useColorScheme() == 'dark';
-	
+	const { width, height } = useWindowDimensions();
+	const isLandscape = width > height;
+	const isLargerScreen = width >= 600;
+
 	const { theme: materialTheme } = useMaterial3Theme();
 
 	const theme = useMemo(
@@ -37,7 +43,15 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 	);
 
 	return (
-		<ThemeContext.Provider value={{ isDarkTheme, theme }}>
+		<ThemeContext.Provider
+			value={{
+				isDarkTheme,
+				isLandscape,
+				isLargerScreen,
+				screenWidth: width,
+				theme,
+			}}
+		>
 			<PaperProvider theme={theme}>{children}</PaperProvider>
 		</ThemeContext.Provider>
 	);

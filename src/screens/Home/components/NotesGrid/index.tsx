@@ -31,8 +31,9 @@ function EmptyList({ message }: { message: NotesListProps['voidMessage'] }) {
 }
 
 export default function NotesGrid({ data, voidMessage }: NotesListProps) {
-	const { theme } = useTheme();
-	const styles = useStyles(theme);
+	const { isLargerScreen, screenWidth, theme } = useTheme();
+	const nCol = isLargerScreen ? 3 : 2;
+	const styles = useStyles(theme, screenWidth);
 
 	return (
 		<FlatList
@@ -43,7 +44,8 @@ export default function NotesGrid({ data, voidMessage }: NotesListProps) {
 			)}
 			ListFooterComponent={() => <View style={{ height: 80 }} />}
 			ListEmptyComponent={() => <EmptyList message={voidMessage} />}
-			numColumns={2}
+			numColumns={nCol}
+			key={`col-${nCol}`}
 			columnWrapperStyle={styles.row}
 		/>
 	);

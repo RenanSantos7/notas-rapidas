@@ -1,15 +1,25 @@
+import { Dimensions, StyleSheet } from 'react-native';
+
 import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 import { ThemeProps } from '@/types/theme';
-import { StyleSheet } from 'react-native';
 
-export default function useStyles(theme: ThemeProps) {
+export default function useStyles(
+	theme: ThemeProps,
+	screenWidth?: number,
+	numColumns?: number,
+) {
+	const rowGap = theme.sizes.spacing.sm;
+	const rowWidth = screenWidth - 2 * SCREEN_HORIZONTAL_PADDING;
+	const columnCount = !numColumns || numColumns < 2 ? 2 : numColumns;
+	const cardWidth = (rowWidth - rowGap * (columnCount - 1)) / columnCount;
+
 	return StyleSheet.create({
 		list: {
 			gap: 10,
 		},
 		row: {
-			flex: 1,
-			justifyContent: "space-between"
+			width: rowWidth,
+			gap: rowGap,
 		},
 		voidListContainer: {
 			flex: 1,
@@ -27,12 +37,12 @@ export default function useStyles(theme: ThemeProps) {
 			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
 			backgroundColor: theme.colors.inverseOnSurface,
 			borderRadius: 24,
-			width: 190,
+			width: cardWidth,
 			minHeight: 200,
 		},
 		divider: {
 			marginTop: 8,
 			marginBottom: 16,
-		}
+		},
 	});
 }

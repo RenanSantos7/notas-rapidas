@@ -1,18 +1,15 @@
-import { View } from 'react-native';
+import { useMemo } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import { Divider, Surface, Text, TouchableRipple } from 'react-native-paper';
+import { EnrichedMarkdownText as Markdown } from 'react-native-enriched-markdown';
 
 import { NoteProps } from '@/types';
 import { useAlertContext } from '@/contexts/alertContext';
 import { useTheme } from '@/contexts/themeContext';
+import ManageNote from '@/components/ManageNote';
 import formatDate from '@/utils/formatDate';
 import useStyles from './styles';
-import {
-	EnrichedMarkdownTextProps,
-	EnrichedMarkdownText as Markdown,
-} from 'react-native-enriched-markdown';
-import { useMemo } from 'react';
 
 interface NotesListItemProps {
 	note: NoteProps;
@@ -29,8 +26,8 @@ function limitString(text: string, limit: number) {
 }
 
 export default function NotesListItem({ note }: NotesListItemProps) {
-	const { theme } = useTheme();
-	const styles = useStyles(theme);
+	const { isLargerScreen, theme, screenWidth } = useTheme();
+	const styles = useStyles(theme, screenWidth, isLargerScreen ? 3 : 2);
 
 	const { useModal } = useAlertContext();
 
@@ -109,7 +106,7 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 				})
 			}
 			onLongPress={() => {
-				useModal(note);
+				useModal(<ManageNote note={note} />);
 			}}
 			rippleColor='rgba(0, 0, 0, .32)'
 		>
@@ -121,10 +118,10 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 
 				<Divider style={styles.divider} />
 
-					<Markdown
-						markdown={limitString(note.content, 100)}
-						markdownStyle={mdStyles}
-					/>
+				<Markdown
+					markdown={limitString(note.content, 100)}
+					markdownStyle={mdStyles}
+				/>
 			</Surface>
 		</TouchableRipple>
 	);
