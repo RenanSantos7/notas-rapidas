@@ -12,6 +12,7 @@ interface IDataContext {
 	createNote: (data: CrudeNoteProps) => void;
 	editNote: (data: NoteProps) => void;
 	deleteNote: (id: NoteProps['id']) => void;
+	deleteAll: () => void;
 }
 
 const DataContext = createContext<IDataContext>(undefined);
@@ -56,9 +57,13 @@ export default function DataProvider({ children }: { children: ReactNode }) {
 		setNotes(prev => prev.filter(note => note.id != id));
 	}
 
+	function deleteAll() {
+		setNotes([]);
+	}
+
 	return (
 		<DataContext.Provider
-			value={{ notes, createNote, editNote, deleteNote }}
+			value={{ notes, createNote, editNote, deleteNote, deleteAll }}
 		>
 			{children}
 		</DataContext.Provider>

@@ -1,36 +1,51 @@
 import {
 	createContext,
 	PropsWithChildren,
+	ReactNode,
 	useContext,
-	useEffect,
 	useState,
 } from 'react';
 
-import { NoteProps } from '@/types';
-import ManageNote from '@/components/ManageNote';
-import { Portal } from 'react-native-paper';
+import { Modal, Portal } from 'react-native-paper';
+
+import { useTheme } from './themeContext';
 
 interface IAlertContext {
-	useModal: (note: NoteProps) => void;
+	useModal: (content: ReactNode) => void;
+	dissmissModal: () => void;
 }
 
 const AlertContext = createContext<IAlertContext>(undefined);
 
 export default function AlertProvider({ children }: PropsWithChildren) {
-	const [selectedNote, setSelectedNote] = useState(null);
+	const { theme } = useTheme();
 
-	function useModal(note: NoteProps) {
-		setSelectedNote(note);
+	const [modalContent, setModalContent] = useState<ReactNode>(null);
+
+	function useModal(content: ReactNode) {
+		setModalContent(content);
+	}
+
+	function dissmissModal() {
+		setModalContent(null);
 	}
 
 	return (
-		<AlertContext.Provider value={{ useModal }}>
+		<AlertContext.Provider value={{ useModal, dissmissModal }}>
 			<Portal>
-				<ManageNote
-					visible={selectedNote !== null}
-					dismiss={() => setSelectedNote(null)}
-					note={selectedNote}
-				/>
+				<Modal
+					visible={modalContent !== null}
+					onDismiss={dissmissModal}
+					contentContainerStyle={{
+						alignSelf: 'center',
+						width: 375,
+						borderRadius: theme.sizes.borderRadius.xl,
+						backgroundColor: theme.colors.background,
+						overflow: 'hidden',
+					}}
+				>
+					{modalContent}
+				</Modal>
 			</Portal>
 			{children}
 		</AlertContext.Provider>

@@ -8,19 +8,18 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { HomeStackParams } from '@/routes/home.routes';
 import { NoteProps } from '@/types';
+import { useAlertContext } from '@/contexts/alertContext';
 import { useDataContext } from '@/contexts/dataContext';
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
 
 interface ManageNoteProps {
 	note: NoteProps;
-	visible: boolean;
-	dismiss: () => void;
-	containerStyle?: ViewStyle;
 }
 
-export default function ManageNote({ note, ...props }: ManageNoteProps) {
+export default function ManageNote({ note }: ManageNoteProps) {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
+	const { dissmissModal } = useAlertContext();
 	const { deleteNote } = useDataContext();
 
 	const scrollRef = useRef<ScrollView>(null);
@@ -40,89 +39,79 @@ export default function ManageNote({ note, ...props }: ManageNoteProps) {
 		}
 	}
 
+	function handleEdit() {
+		navigation.navigate('EditNote', { note });
+		dissmissModal();
+	}
+
 	function handleDelete() {
 		deleteNote(note.id);
-		props.dismiss();
+		dissmissModal();
 	}
 
 	return (
-		<Modal
-			visible={props.visible}
-			onDismiss={props.dismiss}
-			contentContainerStyle={[styles.container, props.containerStyle]}
+		<ScrollView
+			ref={scrollRef}
+			scrollEnabled={false}
+			showsHorizontalScrollIndicator={false}
+			showsVerticalScrollIndicator={false}
+			horizontal
 		>
-			<ScrollView
-				ref={scrollRef}
-				scrollEnabled={false}
-				showsHorizontalScrollIndicator={false}
-				showsVerticalScrollIndicator={false}
-				horizontal
-			>
-				<View style={styles.content}>
-					<List.Section title='Opções' style={{ marginTop: 0 }}>
-						<TouchableHighlight
-							underlayColor={theme.colors.onSurfaceDisabled}
-							onPress={() => {
-								navigation.navigate('EditNote', { note });
-								props.dismiss();
-							}}
-						>
-							<List.Item
-								title='Editar Nota'
-								style={styles.listItem}
-								titleStyle={styles.listItemTxt}
-								left={() => <List.Icon icon='pencil' />}
-							/>
-						</TouchableHighlight>
+			<View style={styles.content}>
+				<List.Section title='Opções' style={{ marginTop: 0 }}>
+					<TouchableHighlight
+						underlayColor={theme.colors.onSurfaceDisabled}
+						onPress={handleEdit}
+					>
+						<List.Item
+							title='Editar Nota'
+							style={styles.listItem}
+							titleStyle={styles.listItemTxt}
+							left={() => <List.Icon icon='pencil' />}
+						/>
+					</TouchableHighlight>
 
-						<Divider />
+					<Divider />
 
-						<TouchableHighlight
-							onPress={() => {
-								scrollToConfirmation();
-							}}
-							underlayColor={theme.colors.errorContainer}
-							/* android_ripple={{
-		                        color: theme.colors.onError,
-		                        foreground: true,
-		                        radius: 128,
-		                        borderless: false,
-		                    }} */
-						>
-							<List.Item
-								title='Excluir Nota'
-								style={styles.listItem}
-								titleStyle={styles.danger}
-								left={() => (
-									<List.Icon
-										icon='delete'
-										color={theme.colors.error}
-									/>
-								)}
-							/>
-						</TouchableHighlight>
-					</List.Section>
+					<TouchableHighlight
+						onPress={() => {
+							scrollToConfirmation();
+						}}
+						underlayColor={theme.colors.errorContainer}
+					>
+						<List.Item
+							title='Excluir Nota'
+							style={styles.listItem}
+							titleStyle={styles.danger}
+							left={() => (
+								<List.Icon
+									icon='delete'
+									color={theme.colors.error}
+								/>
+							)}
+						/>
+					</TouchableHighlight>
+				</List.Section>
+			</View>
+
+			<View style={styles.content}>
+				<Text variant='headlineSmall'>Atenção</Text>
+				<Text>Tem certeza de que deseja excluir?</Text>
+
+				<View style={styles.modalFooter}>
+					<Button mode='contained' onPress={dissmissModal}>
+						Não
+					</Button>
+
+					<Button
+						mode='text'
+						onPress={handleDelete}
+						textColor={theme.colors.error}
+					>
+						Sim
+					</Button>
 				</View>
-
-				<View style={styles.content}>
-					<Text variant='headlineSmall'>Atenção</Text>
-					<Text>Tem certeza de que deseja excluir?</Text>
-
-					<View style={styles.modalFooter}>
-						<Button mode='contained' onPress={props.dismiss}>
-							Não
-						</Button>
-
-						<Button
-							mode='text'
-							onPress={handleDelete}
-							textColor={theme.colors.error}
-						>
-							Sim
-						</Button>
-					</View>
-				</View>
-			</ScrollView>
-		</Modal>
+			</View>
+		</ScrollView>
 	);
 }
