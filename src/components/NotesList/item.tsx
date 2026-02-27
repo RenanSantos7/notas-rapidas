@@ -8,6 +8,7 @@ import { useAlertContext } from '@/contexts/alertContext';
 import { useTheme } from '@/contexts/themeContext';
 import formatDate from '@/utils/formatDate';
 import useStyles from './styles';
+import ManageNote from '../ManageNote';
 
 interface NotesListItemProps {
 	note: NoteProps;
@@ -17,7 +18,7 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
-	const { useModal } = useAlertContext();
+	const { dissmissModal, useModal } = useAlertContext();
 
 	const { navigate } = useNavigation();
 
@@ -30,7 +31,12 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 				})
 			}
 			onLongPress={() => {
-				useModal(note);
+				useModal(
+					<ManageNote
+						note={note}
+						closeModal={dissmissModal}
+					/>
+				);
 			}}
 			rippleColor='rgba(0, 0, 0, .32)'
 		>

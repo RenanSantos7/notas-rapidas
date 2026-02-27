@@ -1,37 +1,37 @@
 import {
 	createContext,
 	PropsWithChildren,
+	ReactNode,
 	useContext,
-	useEffect,
 	useState,
 } from 'react';
 
-import { NoteProps } from '@/types';
-import ManageNote from '@/components/ManageNote';
-import { Portal } from 'react-native-paper';
+import { useTheme } from './themeContext';
+import Modal from '@/components/Modal';
 
 interface IAlertContext {
-	useModal: (note: NoteProps) => void;
+	useModal: (content: ReactNode) => void;
+	dissmissModal: () => void;
 }
 
 const AlertContext = createContext<IAlertContext>(undefined);
 
 export default function AlertProvider({ children }: PropsWithChildren) {
-	const [selectedNote, setSelectedNote] = useState(null);
+	const [modalContent, setModalContent] = useState<ReactNode>(null);
 
-	function useModal(note: NoteProps) {
-		setSelectedNote(note);
+	function useModal(content: ReactNode) {
+		setModalContent(content);
+	}
+
+	function dissmissModal() {
+		setModalContent(null);
 	}
 
 	return (
-		<AlertContext.Provider value={{ useModal }}>
-			<Portal>
-				<ManageNote
-					visible={selectedNote !== null}
-					dismiss={() => setSelectedNote(null)}
-					note={selectedNote}
-				/>
-			</Portal>
+		<AlertContext.Provider value={{ useModal, dissmissModal }}>
+			<Modal visible={modalContent !== null} close={dissmissModal}>
+				{modalContent}
+			</Modal>
 			{children}
 		</AlertContext.Provider>
 	);

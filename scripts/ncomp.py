@@ -68,11 +68,11 @@ export default function useStyles(theme: ThemeProps) {
     print(f"  - {styles_path}")
     
     # Tenta abrir no VS Code
-    try:
-        run(['code', index_path], check=False, shell=True)
-        print(f"Abrindo {index_path} no VS Code...")
-    except FileNotFoundError:
-        print("VS Code não encontrado. Arquivos criados com sucesso!")
+    # try:
+    #     run(['code', index_path], check=False, shell=True)
+    #     print(f"Abrindo {index_path} no VS Code...")
+    # except FileNotFoundError:
+    #     print("VS Code não encontrado. Arquivos criados com sucesso!")
 
 def main():
     """Função principal do script"""

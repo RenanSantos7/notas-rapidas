@@ -1,10 +1,8 @@
-import { HomeLayout } from '@/types';
 import {
-	createContext,
-	PropsWithChildren,
-	useContext,
-	useState,
+	createContext, PropsWithChildren, useContext, useState
 } from 'react';
+
+import { HomeLayout, NoteProps } from '@/types';
 
 interface ISettings {
 	homeLayout: HomeLayout;
