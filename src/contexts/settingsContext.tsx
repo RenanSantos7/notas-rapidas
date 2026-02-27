@@ -1,10 +1,12 @@
-import { HomeLayout } from '@/types';
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import {
+	createContext, PropsWithChildren, useContext, useState
+} from 'react';
+
+import { HomeLayout, NoteProps } from '@/types';
 
 interface ISettings {
 	homeLayout: HomeLayout;
 	toggleHomeLayout: () => void;
-	exportNotes: () => void;
 }
 
 const SettingsContext = createContext<ISettings>(undefined);
@@ -18,14 +20,11 @@ export default function SettingsProvider({ children }: PropsWithChildren) {
 		if (homeLayout === 'list') setHomeLayout('grid');
 	}
 
-	function exportNotes() {}
-
 	return (
 		<SettingsContext.Provider
 			value={{
 				homeLayout,
 				toggleHomeLayout,
-				exportNotes,
 			}}
 		>
 			{children}

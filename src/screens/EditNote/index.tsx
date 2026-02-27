@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Alert } from 'react-native';
+
 import {
 	NavigationProp,
 	RouteProp,
@@ -16,7 +18,6 @@ import ScreenContainer from '@/components/ScreenContainer';
 import TextEditor from './components/TextEditor';
 import isEmptyObj from '@/utils/isEmptyObj';
 import useStyles from './styles';
-import { NoteProps } from '@/types';
 
 export default function EditNote() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
@@ -30,6 +31,11 @@ export default function EditNote() {
 	const [content, setContent] = useState(() => params?.note.content ?? '');
 
 	function handleSave() {
+		if (!title.trim()) {
+			Alert.alert('Título não pode ficar vazio');
+			return;
+		}
+
 		const isEditing = !isEmptyObj(params?.note);
 
 		if (isEditing) {
@@ -50,9 +56,19 @@ export default function EditNote() {
 		navigation.navigate('Home');
 	}
 
+	function handleChangeTitle(text: string) {
+		const invalidCharsRegex = /[<>:"/\\|?*\u0000-\u001F]/g;
+		const sanitized = text
+			.replace(invalidCharsRegex, '')
+			.replace(/\s+/g, ' ')
+			.trim();
+
+		setTitle(sanitized);
+	}
+
 	return (
 		<ScreenContainer noPadding contentStyle={styles.container}>
-			<NoteTitle title={title} setTitle={setTitle} />
+			<NoteTitle title={title} setTitle={handleChangeTitle} />
 
 			<TextInput
 				mode='outlined'

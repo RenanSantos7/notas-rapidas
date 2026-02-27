@@ -1,6 +1,10 @@
 import { createContext, ReactNode, useContext } from 'react';
 
+import { Alert } from 'react-native';
+
 import 'react-native-get-random-values';
+import * as Sharing from 'expo-sharing';
+import { File, Paths } from 'expo-file-system';
 import { v7 as uuidv7 } from 'uuid';
 
 import { CrudeNoteProps, NoteProps } from '@/types';
@@ -13,6 +17,7 @@ interface IDataContext {
 	editNote: (data: NoteProps) => void;
 	deleteNote: (id: NoteProps['id']) => void;
 	deleteAll: () => void;
+	exportNote: (note: NoteProps) => Promise<void>;
 }
 
 const DataContext = createContext<IDataContext>(undefined);
@@ -61,9 +66,46 @@ export default function DataProvider({ children }: { children: ReactNode }) {
 		setNotes([]);
 	}
 
+	async function exportNote(note: NoteProps) {
+		const fileName = `${note.title.replace(/[\s+]/g, '_')}.md`;
+		const noteFile = new File(Paths.cache, fileName);
+		const content = `---
+tags: ${JSON.stringify(note.tags)}
+criação: ${note.ctime.slice(0, 10)}${note?.mtime ? `\nmodificação: ${note.mtime}` : ''}
+---
+${note.content}
+`;
+
+		try {
+			noteFile.create();
+			noteFile.write(content);
+
+			const isShareAvailable = await Sharing.isAvailableAsync();
+
+			if (isShareAvailable) {
+				await Sharing.shareAsync(noteFile.uri, {
+					mimeType: 'text/markdown',
+					dialogTitle: 'Compartilhar nota',
+				});
+			} else {
+				Alert.alert('Erro', 'Compartilhamento não disponível.');
+			}
+		} catch (error) {
+			Alert.alert('Erro', 'Falha ao processar o arquivo da nota.');
+			console.error(error);
+		}
+	}
+
 	return (
 		<DataContext.Provider
-			value={{ notes, createNote, editNote, deleteNote, deleteAll }}
+			value={{
+				notes,
+				createNote,
+				editNote,
+				deleteNote,
+				deleteAll,
+				exportNote,
+			}}
 		>
 			{children}
 		</DataContext.Provider>

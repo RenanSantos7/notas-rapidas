@@ -6,9 +6,8 @@ import {
 	useState,
 } from 'react';
 
-import { Modal, Portal } from 'react-native-paper';
-
 import { useTheme } from './themeContext';
+import Modal from '@/components/Modal';
 
 interface IAlertContext {
 	useModal: (content: ReactNode) => void;
@@ -18,8 +17,6 @@ interface IAlertContext {
 const AlertContext = createContext<IAlertContext>(undefined);
 
 export default function AlertProvider({ children }: PropsWithChildren) {
-	const { theme } = useTheme();
-
 	const [modalContent, setModalContent] = useState<ReactNode>(null);
 
 	function useModal(content: ReactNode) {
@@ -32,21 +29,9 @@ export default function AlertProvider({ children }: PropsWithChildren) {
 
 	return (
 		<AlertContext.Provider value={{ useModal, dissmissModal }}>
-			<Portal>
-				<Modal
-					visible={modalContent !== null}
-					onDismiss={dissmissModal}
-					contentContainerStyle={{
-						alignSelf: 'center',
-						width: 375,
-						borderRadius: theme.sizes.borderRadius.xl,
-						backgroundColor: theme.colors.background,
-						overflow: 'hidden',
-					}}
-				>
-					{modalContent}
-				</Modal>
-			</Portal>
+			<Modal visible={modalContent !== null} close={dissmissModal}>
+				{modalContent}
+			</Modal>
 			{children}
 		</AlertContext.Provider>
 	);

@@ -18,7 +18,7 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
-	const { useModal } = useAlertContext();
+	const { dissmissModal, useModal } = useAlertContext();
 
 	const { navigate } = useNavigation();
 
@@ -31,7 +31,12 @@ export default function NotesListItem({ note }: NotesListItemProps) {
 				})
 			}
 			onLongPress={() => {
-				useModal(<ManageNote note={note} />);
+				useModal(
+					<ManageNote
+						note={note}
+						closeModal={dissmissModal}
+					/>
+				);
 			}}
 			rippleColor='rgba(0, 0, 0, .32)'
 		>

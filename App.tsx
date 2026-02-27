@@ -13,15 +13,15 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<KeyboardProvider>
-				<DataProvider>
-					<SettingsProvider>
-						<ThemeProvider>
+				<SettingsProvider>
+					<ThemeProvider>
+						<DataProvider>
 							<AlertProvider>
 								<Routes />
 							</AlertProvider>
-						</ThemeProvider>
-					</SettingsProvider>
-				</DataProvider>
+						</DataProvider>
+					</ThemeProvider>
+				</SettingsProvider>
 			</KeyboardProvider>
 		</NavigationContainer>
 	);

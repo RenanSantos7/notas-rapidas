@@ -1,12 +1,11 @@
-import { View, Text, TextInput, TextInputProps } from 'react-native';
+import { View, TextInput, TextInputProps } from 'react-native';
 
-import useStyles from './styles';
-import { Dispatch, SetStateAction } from 'react';
 import { useTheme } from '@/contexts/themeContext';
+import useStyles from './styles';
 
 interface NoteTitleProps extends TextInputProps {
     title: string;
-    setTitle: Dispatch<SetStateAction<string>>;
+    setTitle: (text: string) => void;
 
 };
 

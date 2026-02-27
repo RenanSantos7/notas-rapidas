@@ -1,26 +1,25 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
-import { ScrollView, TouchableHighlight, View, ViewStyle } from 'react-native';
+import { ScrollView, TouchableHighlight, View } from 'react-native';
 
-import { Button, Divider, List, Modal, Text } from 'react-native-paper';
+import { Button, Divider, List, Text } from 'react-native-paper';
 
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { HomeStackParams } from '@/routes/home.routes';
 import { NoteProps } from '@/types';
-import { useAlertContext } from '@/contexts/alertContext';
 import { useDataContext } from '@/contexts/dataContext';
 import { useTheme } from '@/contexts/themeContext';
 import useStyles from './styles';
 
 interface ManageNoteProps {
 	note: NoteProps;
+	closeModal: () => void;
 }
 
-export default function ManageNote({ note }: ManageNoteProps) {
+export default function ManageNote({ note, closeModal }: ManageNoteProps) {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
-	const { dissmissModal } = useAlertContext();
-	const { deleteNote } = useDataContext();
+	const { deleteNote, exportNote } = useDataContext();
 
 	const scrollRef = useRef<ScrollView>(null);
 
@@ -41,12 +40,16 @@ export default function ManageNote({ note }: ManageNoteProps) {
 
 	function handleEdit() {
 		navigation.navigate('EditNote', { note });
-		dissmissModal();
+		closeModal();
+	}
+
+	function handleShare() {
+		exportNote(note);
 	}
 
 	function handleDelete() {
 		deleteNote(note.id);
-		dissmissModal();
+		closeModal();
 	}
 
 	return (
@@ -68,6 +71,18 @@ export default function ManageNote({ note }: ManageNoteProps) {
 							style={styles.listItem}
 							titleStyle={styles.listItemTxt}
 							left={() => <List.Icon icon='pencil' />}
+						/>
+					</TouchableHighlight>
+				
+					<TouchableHighlight
+						underlayColor={theme.colors.onSurfaceDisabled}
+						onPress={handleShare}
+					>
+						<List.Item
+							title='Compartilhar Nota'
+							style={styles.listItem}
+							titleStyle={styles.listItemTxt}
+							left={() => <List.Icon icon='share-variant' />}
 						/>
 					</TouchableHighlight>
 
@@ -99,7 +114,7 @@ export default function ManageNote({ note }: ManageNoteProps) {
 				<Text>Tem certeza de que deseja excluir?</Text>
 
 				<View style={styles.modalFooter}>
-					<Button mode='contained' onPress={dissmissModal}>
+					<Button mode='contained' onPress={closeModal}>
 						Não
 					</Button>
 

@@ -52,11 +52,11 @@ export default function useStyles(theme: ThemeProps) {
     print(f"  - {index_path}")
     print(f"  - {styles_path}")
     
-    try:
-        run(['code', index_path], check=False)
-        print(f"Abrindo {index_path} no VS Code...")
-    except FileNotFoundError:
-        print("VS Code não encontrado. Arquivos criados com sucesso!")
+    # try:
+    #     run(['code', index_path], check=False)
+    #     print(f"Abrindo {index_path} no VS Code...")
+    # except FileNotFoundError:
+    #     print("VS Code não encontrado. Arquivos criados com sucesso!")
 
 def main():
     if len(argv) < 2:
