@@ -3,18 +3,18 @@ import { View, Text } from 'react-native';
 import { Divider, TouchableRipple } from 'react-native-paper';
 import MaterialIcons from '@react-native-vector-icons/material-design-icons';
 
+import { useAlertContext } from '@/contexts/alertContext';
+import { useDataContext } from '@/contexts/dataContext';
 import { useTheme } from '@/contexts/themeContext';
-import { useSettingsContext } from '@/contexts/settingsContext';
+import DeleteConfirmation from './components/DeleteConfirmation';
 import Header from '@/components/Header';
 import ScreenContainer from '@/components/ScreenContainer';
 import useStyles from './styles';
-import { useAlertContext } from '@/contexts/alertContext';
-import DeleteConfirmation from './components/DeleteConfirmation';
 
 export default function Settings() {
 	const { useModal } = useAlertContext();
 	const { theme } = useTheme();
-	const { exportNotes } = useSettingsContext();
+	const { exportAllNotes } = useDataContext();
 	const styles = useStyles(theme);
 
 	function handleDeleteAll() {
@@ -23,16 +23,18 @@ export default function Settings() {
 
 	return (
 		<ScreenContainer noPadding>
-			<Header title='Opções' />
+			<Header
+				title='Opções'
+				containerStyle={styles.header}
+			/>
 
-			<TouchableRipple rippleColor='#cccccc' onPress={exportNotes}>
+			<TouchableRipple rippleColor='#cccccc' onPress={exportAllNotes}>
 				<View style={styles.optionContainer}>
-					<MaterialIcons name='export' size={28} />
+					<MaterialIcons name='share-variant' size={28} />
 					<View>
 						<Text style={styles.buttonTitle}>Exportar notas</Text>
 						<Text style={styles.buttonLabel}>
-							Exporta todas as notas em formato Markdown para
-							Downloads/notes
+							Exporta todas as notas em formato Markdown.
 						</Text>
 					</View>
 				</View>
@@ -48,7 +50,7 @@ export default function Settings() {
 						size={28}
 					/>
 					<Text style={[styles.buttonTitle, styles.textError]}>
-						Excluir todas as notas
+						Excluir todas as notas.
 					</Text>
 				</View>
 			</TouchableRipple>

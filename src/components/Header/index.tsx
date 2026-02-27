@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { View } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
 import { Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -13,19 +13,21 @@ interface HeaderProps {
 	title: string;
 	right?: ReactNode;
 	canGoBack?: boolean;
+	containerStyle?: ViewStyle;
 }
 
 export default function Header({
 	title,
 	right,
 	canGoBack = false,
+	containerStyle,
 }: HeaderProps) {
 	const { goBack } = useNavigation();
 	const { theme } = useTheme();
 	const styles = useStyles(theme);
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, containerStyle]}>
 			<View style={styles.left}>
 				{canGoBack ? (
 					<MaterialIcons

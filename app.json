@@ -6,11 +6,11 @@
 	"platforms": ["android"],
 	"backgroundColor": "#fafafa",
 	"primaryColor": "#F08F00",
-	/* "notification": {
+	"notification": {
 		"icon": "./assets/icon-mono-small.png"
-	}, */
+	},
 	"userInterfaceStyle": "automatic",
-	// "newArchEnabled": true,
+	"newArchEnabled": true,
 	"splash": {
 		"image": "./assets/splash-icon.png",
 		"resizeMode": "contain",
@@ -23,7 +23,6 @@
 			"monochromeImage": "./assets/adaptive-icon.png"
 		},
 		"predictiveBackGestureEnabled": false,
-		"permissions": ["READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE"],
 		"package": "com.renansantos7.notasrapidas",
 		"userInterfaceStyle": "automatic"
 	},
