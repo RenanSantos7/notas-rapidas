@@ -1,32 +1,39 @@
 {
-	"name": "Notas Rápidas",
-	"slug": "notas-rapidas",
-	"version": "1.0.0",
-	"orientation": "default",
-	"platforms": ["android"],
-	"backgroundColor": "#fafafa",
-	"primaryColor": "#F08F00",
-	"notification": {
-		"icon": "./assets/icon-mono-small.png"
-	},
-	"userInterfaceStyle": "automatic",
-	"newArchEnabled": true,
-	"splash": {
-		"image": "./assets/splash-icon.png",
-		"resizeMode": "contain",
-		"backgroundColor": "#F08F00"
-	},
-	"android": {
-		"adaptiveIcon": {
-			"foregroundImage": "./assets/adaptive-icon.png",
-			"backgroundColor": "#F08F00",
-			"monochromeImage": "./assets/adaptive-icon.png"
-		},
-		"predictiveBackGestureEnabled": false,
-		"package": "com.renansantos7.notasrapidas",
-		"userInterfaceStyle": "automatic"
-	},
-	"ios": {
-		"bundleIdentifier": "com.renansantos7.notasrapidas"
-	}
+  "name": "Notas Rápidas",
+  "slug": "notas-rapidas",
+  "version": "1.0.0",
+  "orientation": "default",
+  "platforms": [
+    "android"
+  ],
+  "backgroundColor": "#fafafa",
+  "primaryColor": "#F08F00",
+  "notification": {
+    "icon": "./assets/icon-mono-small.png"
+  },
+  "userInterfaceStyle": "automatic",
+  "newArchEnabled": true,
+  "splash": {
+    "image": "./assets/splash-icon.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#F08F00"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#F08F00",
+      "monochromeImage": "./assets/adaptive-icon.png"
+    },
+    "predictiveBackGestureEnabled": false,
+    "package": "com.renansantos7.notasrapidas",
+    "userInterfaceStyle": "automatic"
+  },
+  "ios": {
+    "bundleIdentifier": "com.renansantos7.notasrapidas"
+  },
+  "extra": {
+    "eas": {
+      "projectId": "7b13065e-fc18-45ad-ba69-811bcc87ed31"
+    }
+  }
 }

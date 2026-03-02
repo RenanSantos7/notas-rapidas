@@ -31,6 +31,10 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 
+# Build
+*.aab
+*.keystore
+
 # macOS
 .DS_Store
 *.pem
