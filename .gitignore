@@ -33,6 +33,7 @@ yarn-error.*
 
 # Build
 *.aab
+*.apk
 *.keystore
 
 # macOS
