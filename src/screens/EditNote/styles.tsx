@@ -11,6 +11,7 @@ export default function useStyles(theme: ThemeProps) {
 		tagsInput: {
 			marginHorizontal: SCREEN_HORIZONTAL_PADDING,
 			backgroundColor: theme.colors.background,
+			color: theme.colors.onBackground
 		},
 	});
 }
