@@ -11,6 +11,7 @@ export default function useStyles(theme: ThemeProps) {
 		input: {
 			fontSize: 32,
 			fontWeight: 400,
+			color: theme.colors.onBackground,
 		},
 	});
 }
