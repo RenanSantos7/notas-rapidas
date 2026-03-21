@@ -77,7 +77,7 @@ export default function useStyles(theme: ThemeProps) {
 def main():
     """Função principal do script"""
     if len(argv) < 2:
-        print("Uso: ncomp [nome-do-componente] [?path-relativo-a-src]")
+        print("Uso: ncomppy <nome-do-componente> [path-relativo-a-src]")
         print("Exemplo: ncomp.py MeuComponente pages/Edit")
         print("  -> Cria em src/pages/Edit/components/MeuComponente")
         exit(1)
