@@ -4,14 +4,11 @@ import { ThemeProps } from '@/types/theme';
 import { SCREEN_HORIZONTAL_PADDING } from '@/constants/ui';
 
 export default function useStyles(theme: ThemeProps) {
-	return StyleSheet.create({
-		container: {
+    return StyleSheet.create({
+        input: {
 			marginHorizontal: SCREEN_HORIZONTAL_PADDING,
+			backgroundColor: theme.colors.background,
+			color: theme.colors.onBackground
 		},
-		input: {
-			fontSize: 32,
-			fontWeight: 400,
-			color: theme.colors.onBackground,
-		},
-	});
+    });
 }

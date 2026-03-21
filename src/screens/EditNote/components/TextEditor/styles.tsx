@@ -18,6 +18,7 @@ export default function useStyles(theme: ThemeProps) {
 			paddingTop: 20,
 			paddingHorizontal: SCREEN_HORIZONTAL_PADDING,
 			lineHeight: 28,
+			color: theme.colors.onBackground,
 		},
 		toolbarContainer: {
 			position: 'absolute',

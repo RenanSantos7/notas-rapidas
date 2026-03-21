@@ -8,9 +8,6 @@ export default function useStyles(theme: ThemeProps) {
 		container: {
 			gap: 20,
 		},
-		tagsInput: {
-			marginHorizontal: SCREEN_HORIZONTAL_PADDING,
-			backgroundColor: theme.colors.background,
-		},
+
 	});
 }

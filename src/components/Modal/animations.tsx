@@ -6,6 +6,8 @@ import {
 	withTiming,
 } from 'react-native-reanimated';
 
+import { ANIMATIONS_CONFIG } from '@/constants/animations';
+
 export default function useAnimations() {
 	const orgDialogTranslateY = 100;
 	const orgOpacity = 0;
@@ -20,29 +22,32 @@ export default function useAnimations() {
 		})),
 		modal: useAnimatedStyle(() => ({
 			opacity: dialogOpacity.value,
-			transform: [{
-				translateY: dialogTranslateY.value
-			}],
+			transform: [
+				{
+					translateY: dialogTranslateY.value,
+				},
+			],
 		})),
 	};
 
-	const config = {
-		duration: 300,
-		easing: Easing.inOut(Easing.quad),
-	};
-
 	function openningAnimation() {
-		containerOpacity.value = withTiming(1, config);
-		dialogOpacity.value = withDelay(200, withTiming(1, config));
-		dialogTranslateY.value = withDelay(200, withTiming(0, config));
+		containerOpacity.value = withTiming(1, ANIMATIONS_CONFIG);
+		dialogOpacity.value = withDelay(200, withTiming(1, ANIMATIONS_CONFIG));
+		dialogTranslateY.value = withDelay(
+			200,
+			withTiming(0, ANIMATIONS_CONFIG),
+		);
 	}
 
 	function closingAnimation() {
-		containerOpacity.value = withTiming(orgOpacity, config);
-		dialogOpacity.value = withDelay(200, withTiming(orgOpacity, config));
+		containerOpacity.value = withTiming(orgOpacity, ANIMATIONS_CONFIG);
+		dialogOpacity.value = withDelay(
+			200,
+			withTiming(orgOpacity, ANIMATIONS_CONFIG),
+		);
 		dialogTranslateY.value = withDelay(
 			200,
-			withTiming(orgDialogTranslateY, config)
+			withTiming(orgDialogTranslateY, ANIMATIONS_CONFIG),
 		);
 	}
 

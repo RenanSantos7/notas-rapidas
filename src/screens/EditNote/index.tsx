@@ -8,7 +8,6 @@ import {
 	useNavigation,
 	useRoute,
 } from '@react-navigation/native';
-import { TextInput } from 'react-native-paper';
 
 import { HomeStackParams } from '@/routes/home.routes';
 import { useTheme } from '@/contexts/themeContext';
@@ -18,6 +17,7 @@ import ScreenContainer from '@/components/ScreenContainer';
 import TextEditor from './components/TextEditor';
 import isEmptyObj from '@/utils/isEmptyObj';
 import useStyles from './styles';
+import TagsInput from './components/TagsInput';
 
 export default function EditNote() {
 	const navigation = useNavigation<NavigationProp<HomeStackParams>>();
@@ -70,18 +70,9 @@ export default function EditNote() {
 		<ScreenContainer noPadding contentStyle={styles.container}>
 			<NoteTitle title={title} setTitle={handleChangeTitle} />
 
-			<TextInput
-				mode='outlined'
-				label='Tags'
-				placeholder='Separe as tags por vírgula'
-				style={styles.tagsInput}
-				placeholderTextColor={theme.colors.backdrop}
+			<TagsInput
 				value={tags.join(', ')}
 				onChangeText={text => setTags(text.split(', '))}
-				right={
-					<TextInput.Icon icon='tag' color={theme.colors.backdrop} />
-				}
-				autoCapitalize='none'
 			/>
 
 			<TextEditor

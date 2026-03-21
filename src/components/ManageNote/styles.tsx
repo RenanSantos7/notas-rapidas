@@ -5,7 +5,7 @@ import { ThemeProps } from '@/types/theme';
 export default function useStyles(theme: ThemeProps) {
 	return StyleSheet.create({
 		content: {
-			width: 375,
+			width: 325,
 			gap: theme.sizes.spacing.lg,
 		},
 		listItem: {
