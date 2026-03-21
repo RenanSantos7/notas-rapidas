@@ -20,7 +20,7 @@ export default function NoteTitle(props: NoteTitleProps) {
                 value={props.title}
                 onChangeText={props.setTitle}
                 style={styles.input}
-                placeholderTextColor={theme.colors.backdrop}
+                placeholderTextColor={theme.colors.onSurfaceDisabled}
             />
         </View>
     );

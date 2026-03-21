@@ -155,6 +155,7 @@ export default function TextEditor(props: TextEditorProps) {
 			>
 				<Divider />
 				<TextInput
+					placeholder='Escreva sua nota em markdown'
 					style={styles.input}
 					textAlignVertical='top'
 					value={props.value}
